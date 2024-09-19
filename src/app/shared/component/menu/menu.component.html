@@ -51,25 +51,17 @@
 <!-- ========== END HEADER ========== -->
 
 
-  <!-- Collapse -->
-  <div *ngIf="dropdown"  class="flex bg-white absolute flex-col w-full justify-center items-center gap-4 pt-4 text-lg font-bold h-[25vh]">
-    <!-- <div>
-      <a class="relative inline-block text-black focus:outline-none before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 before:bg-lime-400" href="#" aria-current="page">Work</a>
-    </div> -->
-    <div (click)="route('home')">
-      <nav class=" active:text-primary/45" (click)="route('home')">Home</nav>
-    </div>
-    <div>
-      <nav class=" active:text-primary/45" (click)="route('about')" >About</nav>
-    </div>
-    <div>
-      <nav class=" focus:text-gray-600 cursor-pointer hover:border-b-2 hover:border-secondary active:text-primary/45" (click)="route('app/login')">Platform</nav>
-    </div>
-    <div>
-      <!-- <a class="inline-block text-black hover:text-gray-600 focus:outline-none focus:text-gray-600 cursor-pointer hover:border-b-2 hover:border-secondary active:text-primary/45" >Services</a> -->
-    </div>
-  </div>
+<div *ngIf="dropdown" class="flex z-50 bg-white absolute flex-col w-full justify-center items-center gap-4 pt-4 text-lg font-bold h-[25vh]">
+  <a (click)="route('home')" class="cursor-pointer active:text-primary/45">
+    Home
+  </a>
+  <a (click)="route('about')" class="cursor-pointer active:text-primary/45">
+    About
+  </a>
+  <a (click)="route('app/login')" class="cursor-pointer active:text-primary/45 focus:text-gray-600 hover:border-b-2 hover:border-secondary">
+    Platform
+  </a>
+</div>
 
-<!-- End Collapse -->
 
 
