@@ -1,0 +1,20 @@
+<div class="section">
+    <div class="videos">
+        <div class="header pt-4 flex justify-between items-center">
+          <div class="font-bold text-2xl text-primary">Courses</div>
+          <app-search-upload-header></app-search-upload-header>
+        </div>
+
+        <!-- <div class="buttons flex justify-center w-full gap-4  mt-4">
+            <button class="px-4 py-1 border active:scale-95 bg-white border-gray-400 text-sm rounded-md">Objects</button>
+            <button class="px-4 py-1 border active:scale-95 bg-white border-gray-400 text-sm rounded-md">Portrait</button>
+            <button class="px-4 py-1 border active:scale-95 bg-white border-gray-400 text-sm rounded-md">Vehicles</button>
+        </div> -->
+
+        <div class="flex flex-wrap gap-8 justify-start mt-8">
+            <div routerLink="/app/course" class=" flex-grow flex-basis-1 rounded-md border" *ngFor="let row of courses">
+              <app-image-card [displayCount]="true" imageTitle={{row.course_title}} imageSrc={{row.image}}></app-image-card>
+            </div>
+          </div>
+    </div>
+</div>

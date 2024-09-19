@@ -1,0 +1,51 @@
+<div class="section w-full h-screen">
+  <app-menu></app-menu>
+
+  <app-hero></app-hero>
+
+  <div class="our-service-heading py-12 lg:py-0 lg:pt-12 pt-0 mt-8 lg:mt-0 w-full flex justify-center items-center">
+    <div class="button">
+        <button class="w-[250px] h-[70px] border rounded-full text-3xl font-bold text-primary">Our Services</button>
+    </div>
+  </div>
+
+  <div class="out-service-content flex flex-col lg:gap-0 gap-16">
+    <app-ourservice title="See - do  Platform"
+                    body=" Unlock the power of knowledge with See - dO Learning Platform. Our web platform
+                    is dedicated to educating farmers on climate-resilient agriculture in Hausa and
+                    other indigenous Nigerian languages. Dive into a wealth of resources, including
+                    articles, videos, and interactive tutorials, all designed to help you thrive in a
+                    changing climate. Join our community of learners today and cultivate a sustainable
+                    future for generations to come."
+                    image="assets/video.png"
+                    [imagePositionRight]="false"></app-ourservice>
+
+
+    <app-ourservice title="Solar  SeedO Device"
+                    body="Introducing the SeedO Solar Hardware Device – your personal agricultural educator.
+                    Powered by solar energy for uninterrupted access, this innovative device delivers
+                    educational content on climate-resilient agriculture in Hausa and other indigenous
+                    Nigerian languages. Compact and user-friendly, the SeedO Solar Hardware Device is
+                    your go-to companion for on-the-go learning. Invest in your agricultural success
+                    today and harness the power of sustainable farming practices."
+                    image="assets/device.png"
+                    [imagePositionRight]="true"></app-ourservice>
+
+    <app-ourservice title="USSD Code"
+                    body="For quick access to essential agricultural information, dial our USSD code.
+                        Simply input the quick code and gain instant access to valuable insights on
+                        climate-resilient agriculture. Seamlessly integrated into your mobile experience,
+                        our USSD code provides a convenient way to stay informed and empowered wherever
+                        you are. Dial in now and take the first step towards a more resilient future."
+                    image="assets/phone.png"
+                    [imagePositionRight]="false"></app-ourservice>
+
+
+  </div>
+
+
+  <div class="footer mt-8">
+    <app-footer></app-footer>
+  </div>
+
+</div>

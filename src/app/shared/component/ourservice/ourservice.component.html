@@ -1,0 +1,29 @@
+<div class="services w-full flex justify-center ">
+  <div *ngIf="!imagePositionRight" class="service w-full h-full lg:h-[500px] flex flex-col-reverse lg:flex-row-reverse lg:items-center lg:gap-12 lg:max-w-[1200px] px-6 lg:px-8">
+    <div class="section-one basis-1/2 ">
+      <div class="title">
+        <h1 class="text-3xl lg:text-start text-center font-semibold text-primary pr-8 lg:pr-8">{{title}}</h1>
+        <p class="mt-4 lg:mt-2 text-lg break-words hyphens-auto pr-0 lg:pr-8">
+          {{body}}
+        </p>
+      </div>
+    </div>
+    <div class="section-two basis-1/2 flex justify-center">
+      <img src={{image}} class="h-[400px]" alt="">
+    </div>
+  </div>
+
+  <div *ngIf="imagePositionRight" class="service w-full h-full lg:h-[500px] flex flex-col-reverse lg:flex-row lg:items-center lg:gap-12 lg:max-w-[1200px] px-6 lg:px-8">
+    <div class="section-one basis-1/2 ">
+      <div class="title">
+        <h1 class="text-3xl lg:text-start text-center font-semibold text-primary pl-0 lg:pl-8">{{title}}</h1>
+        <p class="mt-4 lg:mt-2 text-lg break-words hyphens-auto pl-0 lg:pl-8">
+          {{body}}
+        </p>
+      </div>
+    </div>
+    <div class="section-two basis-1/2 flex justify-center">
+      <img src={{image}} class="h-[400px]" alt="">
+    </div>
+  </div>
+</div>

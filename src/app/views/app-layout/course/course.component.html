@@ -1,0 +1,131 @@
+<div class="section ">
+  <app-menu></app-menu>
+
+  <div class="bg-white w-full mx-auto px-6 lg:px-12 py-8 mt-8 max-w-[1100px] h-full rounded-md">
+
+    <div class="course flex flex-col lg:flex-row gap-20">
+      <div class="section-one basis-[70%]">
+
+
+        <div class=" w-full">
+          <video controls class="w-full h-auto rounded-lg shadow-lg">
+            <source src="your-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div class="vid-title text-lg font-bold mt-4">Barka da zuwa shafinmu na seedo</div>
+
+
+        <div class="course-detail mt-8">
+          <div class="heading flex gap-12 text-lg text-primary font-semibold ">
+            <nav class="hover:border-b-2 border-secondary cursor-pointer ">Bayani</nav>
+            <nav class="hover:border-b-2 border-secondary cursor-pointer">Fayali</nav>
+          </div>
+
+          <div class="detail mt-4">
+            Muna muku maraba da zuwa shanfin manhajar mu ta seedo inda ilimin amfanin tafiyar da  gona ya gamu da ilimin fasaha da kimiyya ta zamani waenda zasu kawo cigaba a harkar noma.
+          </div>
+        </div>
+
+      </div>
+      <div class="section-two basis-[30%]">
+        <div class="language-filter bg-black flex gap-2 rounded-md py-4 justify-center">
+          <span class="text-gray-500 text-sm text-center">Choose a language</span>
+          <span class="text-white text-center flex gap-2 text-sm items-center">
+            Hausa
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
+              </svg>
+            </span>
+          </span>
+        </div>
+
+        <div class="section-title mt-8 font-bold text-xl">Abin Dake ciki</div>
+
+        <div class="course" *ngFor="let row of course">
+          <div (click)="openChapter(row.id)" class="course bg-gray-200 hover:bg-secondary hover:text-white  flex gap-2 rounded-md py-4 justify-between px-4 mt-2">
+            <span class=" text-center flex gap-4 font-bold items-center">
+              <span class=" text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+                </svg>
+              </span>
+                {{row.title}}
+            </span>
+
+            <span  class=" font-bold text-center flex gap-2 items-center">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                </svg>
+              </span>
+            </span>
+          </div>
+
+          <div *ngIf="open && row.id==currentId" class="course  hover:text-secondary  flex gap-2 rounded-md py-4 justify-between px-4 mt-2">
+            <span class=" text-center flex gap-4 items-center">
+
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                  </svg>
+                </span>
+                {{row.title}}
+            </span>
+
+            <span class="text-center flex gap-2 items-center">
+              <span>
+               1: 00min
+              </span>
+            </span>
+          </div>
+
+          <div *ngIf="open && row.id==currentId" class="course  hover:text-secondary  flex gap-2 rounded-md py-4 justify-between px-4 mt-2">
+            <span class=" text-center flex gap-4 items-center">
+
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                  </svg>
+                </span>
+                {{row.title}}
+            </span>
+
+            <span class="text-center flex gap-2 items-center">
+              <span>
+               1: 00min
+              </span>
+            </span>
+          </div>
+
+
+        </div>
+
+
+
+
+      </div>
+    </div>
+
+    <!-- <div class="video-list mt-8 flex gap-4 flex-wrap w-full justify-between">
+      <div *ngFor="let row of course">
+        <div class="flex-grow flex-basis-0">
+          <app-image-card [displayCount]="false" imageSrc={{row.image}}></app-image-card>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="flex flex-wrap gap-8 justify-start mt-8">
+      <div routerLink="/app/course" class=" flex-grow flex-basis-1 rounded-md border" *ngFor="let row of courses">
+        <app-image-card [displayCount]="true" imageTitle={{row.course_title}} imageSrc={{row.image}}></app-image-card>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="mt-8">
+    <app-footer></app-footer>
+  </div>
+</div>
