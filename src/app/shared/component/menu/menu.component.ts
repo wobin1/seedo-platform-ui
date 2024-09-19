@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent {
 
+  dropdown:boolean = false;
+
   constructor(private router: Router){}
 
   ngOnInit(){}
@@ -15,6 +17,11 @@ export class MenuComponent {
   route(page:string){
     console.log('route function clicked')
     this.router.navigateByUrl(page)
+  }
+
+  OnDropdown(){
+    this.dropdown = !this.dropdown
+    console.log('dropdown clicked')
   }
 
 }

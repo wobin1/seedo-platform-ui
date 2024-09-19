@@ -6,6 +6,7 @@ import { HeroComponent } from './component/hero/hero.component';
 import { OurserviceComponent } from './component/ourservice/ourservice.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { ImageCardComponent } from './component/image-card/image-card.component';
+import { AboutHeroComponent } from './component/about-hero/about-hero.component';
 
 
 
@@ -16,7 +17,8 @@ import { ImageCardComponent } from './component/image-card/image-card.component'
     OurserviceComponent,
     FooterComponent,
     ImageCardComponent,
-    SearchUploadHeaderComponent
+    SearchUploadHeaderComponent,
+    AboutHeroComponent
   ],
   imports: [
     CommonModule
@@ -27,7 +29,8 @@ import { ImageCardComponent } from './component/image-card/image-card.component'
     OurserviceComponent,
     FooterComponent,
     ImageCardComponent,
-    SearchUploadHeaderComponent
+    SearchUploadHeaderComponent,
+    AboutHeroComponent
   ]
 })
 export class SharedModule { }
