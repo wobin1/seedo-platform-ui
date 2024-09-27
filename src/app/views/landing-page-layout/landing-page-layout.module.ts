@@ -6,13 +6,15 @@ import { LandingPageLayoutComponent } from './landing-page-layout.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { SharedModule } from '../../shared/shared.module';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
   declarations: [
     LandingPageLayoutComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,

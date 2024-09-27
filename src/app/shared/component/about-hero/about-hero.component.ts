@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-about-hero',
@@ -7,6 +8,21 @@ import { Component } from '@angular/core';
 })
 export class AboutHeroComponent {
 
+  @Input() page!:string;
+  @Input() pageRoute!:string;
+  @Output() routClick = new EventEmitter();
 
+  constructor(private router: Router){}
+
+  ngOnInit(){}
+
+  route(page:string){
+    console.log('route function clicked')
+    this.router.navigateByUrl(page)
+  }
+
+  onClick(){
+    this.routClick.emit();
+  }
 
 }
