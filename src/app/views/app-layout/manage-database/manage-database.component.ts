@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-manage-database',
@@ -7,13 +7,23 @@ import { Component } from '@angular/core';
 })
 export class ManageDatabaseComponent {
   thumbnail = "assets/thumbnail.jpg"
-  courses = [
-    { "course_title": "Noma mai dorewa", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail1.jpg" },
-    { "course_title": "Kasuwancin noma", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail2.jpg" },
-    { "course_title": "Kimiyyar Shuka", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail3.jpg" },
-    { "course_title": "Kimiyyar k'asa", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail4.jpg" },
-    { "course_title": "Tattalin Arzikin Noma", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail5.jpg" },
-    { "course_title": "fadada harkar noma", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail6.jpg" }
-  ];
+  @Output() coursesLanguage = new EventEmitter();
+  courses:any = [];
+  @Input() hauseCourses:any;
+  @Input() YorubaCourses:any;
+  @Input() IgboCourses:any;
+
+  ngOnInit(){
+    this.courses = this.hauseCourses;
+  }
+
+  onLanguageDroopdownClick(){
+    this.coursesLanguage.emit();
+  }
+
+  chooseCourseLanguage(language:string){
+    this.courses = language;
+  }
+
 
 }
