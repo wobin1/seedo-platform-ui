@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ContactComponent } from './contact/contact.component';
+import { PrimengModule } from '../../primeng/primeng.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ContactComponent } from './contact/contact.component';
   imports: [
     CommonModule,
     LandingPageLayoutRoutingModule,
-    SharedModule
+    SharedModule,
+    PrimengModule
   ]
 })
 export class LandingPageLayoutModule { }

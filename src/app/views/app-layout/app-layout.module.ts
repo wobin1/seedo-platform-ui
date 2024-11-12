@@ -10,6 +10,9 @@ import { ManageDatabaseComponent } from './manage-database/manage-database.compo
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { PrimengModule } from '../../primeng/primeng.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     CommonModule,
     AppLayoutRoutingModule,
-    SharedModule
+    SharedModule,
+    PrimengModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ]
 })
 export class AppLayoutModule { }
