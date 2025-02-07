@@ -13,6 +13,10 @@ import { RegisterComponent } from './register/register.component';
 import { PrimengModule } from '../../primeng/primeng.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { BookComponent } from './book/book.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { CommunityComponent } from './community/community.component';
 
 
 @NgModule({
@@ -23,7 +27,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     ManageDatabaseComponent,
     AboutComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent,
+    BookComponent,
+    QuizComponent,
+    CommunityComponent
   ],
   imports: [
     CommonModule,

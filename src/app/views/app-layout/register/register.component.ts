@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { DatabaseService } from '../../../shared/database.service';
+import { AuthService } from '../../../shared/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent {
   hidePassword:boolean = true;
 
   constructor(
-    private auth: DatabaseService,
+    private auth: AuthService,
     private fb: FormBuilder,
     private router: Router,
     private messageService: MessageService,
@@ -45,30 +46,32 @@ export class RegisterComponent {
       return;
     }
 
-    // this.auth.post('users/register', this.registrationForm.value).subscribe(
-    //   res=> {
-    //     console.log(res);
-    //     this.showSuccess('User created successfully')
-    //     this.router.navigate(['/auth/login']);
-
-    //   },
-    //   err=> {
-    //     this.showError('An error occurred please try again')
-    //     console.log(err)
-    //   }
-    // );
-
-    setTimeout(() => {
-      let authenticate:any = this.auth.createUser(this.registrationForm.value)
-      if(authenticate){
-        this.showSuccess('registration successfull!')
+    this.auth.signup(this.registrationForm.value).subscribe(
+      res=> {
+        console.log(res);
+        this.showSuccess('User created successfully')
+        this.router.navigate(['/app/login']);
         this.loading = false;
-        this.router.navigateByUrl('/app/login')
-      }else{
-        this.showError('Email already exist or there was an error please try again!')
+
+      },
+      err=> {
+        this.showError('An error occurred please try again')
+        console.log(err)
         this.loading = false;
       }
-    }, 2000)
+    );
+
+    // setTimeout(() => {
+    //   let authenticate:any = this.auth.createUser(this.registrationForm.value)
+    //   if(authenticate){
+    //     this.showSuccess('registration successfull!')
+    //     this.loading = false;
+    //     this.router.navigateByUrl('/app/login')
+    //   }else{
+    //     this.showError('Email already exist or there was an error please try again!')
+    //     this.loading = false;
+    //   }
+    // }, 2000)
 
   }
 

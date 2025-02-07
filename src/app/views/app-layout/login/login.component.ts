@@ -3,7 +3,7 @@ import { HttpServiceService } from '../../../shared/http-service.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { DatabaseService } from '../../../shared/database.service';
+import { AuthService } from '../../../shared/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent {
   toastType!:string;
 
   constructor(private api: HttpServiceService,
-              private auth: DatabaseService,
+              private auth: AuthService,
               private fb: FormBuilder,
               private router: Router,
               private messageService: MessageService){}
@@ -46,34 +46,20 @@ export class LoginComponent {
     formData.set('username', this.loginForm.get('email')?.value);
     formData.set('password', this.loginForm.get('password')?.value);
 
-    let authenticate:any = this.auth.loginUser(this.loginForm.get('email').value, this.loginForm.get('password').value);
-
-    if(authenticate){
-      setTimeout(()=>{
-        this.showSuccess('Login successfull!')
+    this.auth.login(this.loginForm.value).subscribe(
+      (res) => {
+        console.log(res);
+        this.showSuccess('login successfull!')
+        this.router.navigate(['/app/courses']);
         this.loading = false;
-        this.router.navigateByUrl('/app/courses')
-        console.log('login reach this level')
-      }, 2000)
-    }else{
-      this.showError('Invalid email or password!')
-      this.loading = false;
-    }
 
-    // this.api.post('users/login/', formData).subscribe(
-    //   (res) => {
-    //     console.log(res);
-    //     this.loading = false;
-    //     this.showSuccess('login successfull!')
-    //     this.router.navigate(['/app/dashboard']);
-
-    //   },
-    //   (err) => {
-    //     console.error(err);
-    //     this.showError('Invalid email or password!')
-    //     this.loading = false;
-    //   }
-    // );
+      },
+      (err) => {
+        console.error(err);
+        this.showError('Invalid email or password!')
+        this.loading = false;
+      }
+    );
 
   }
 

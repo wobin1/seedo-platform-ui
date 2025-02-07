@@ -5,13 +5,20 @@ import { CourseComponent } from './course/course.component';
 import { CoursesComponent } from './courses/courses.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { BookComponent } from './book/book.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { CommunityComponent } from './community/community.component';
 
 const routes: Routes = [
   {path: 'app', component: AppLayoutComponent, children: [
-    {path: 'course', component: CourseComponent },
+    {path: 'courses/:id', component: CourseComponent },
     {path: 'courses', component: CoursesComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'register', component: RegisterComponent},
+    {path: 'dashboard', component: DashboardComponent},
+    {path: 'books', component: BookComponent},
+    {path: 'quiz', component: QuizComponent},
+    {path: 'community', component: CommunityComponent}
   ]}
 ];
 

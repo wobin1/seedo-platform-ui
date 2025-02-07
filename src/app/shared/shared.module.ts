@@ -10,6 +10,7 @@ import { SearchUploadHeaderComponent } from './component/search-upload-header/se
 import { PrimengModule } from '../primeng/primeng.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CourseCardComponent } from './component/course-card/course-card.component';
 
 
 
@@ -21,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     ImageCardComponent,
     SearchUploadHeaderComponent,
-    AboutHeroComponent
+    AboutHeroComponent,
+    CourseCardComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchUploadHeaderComponent,
     AboutHeroComponent,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CourseCardComponent,
   ]
 })
 export class SharedModule { }

@@ -6,6 +6,10 @@ import { ToastModule } from 'primeng/toast';
 import { StyleClassModule } from 'primeng/styleclass';
 import { GalleriaModule } from 'primeng/galleria';
 import { ImageModule } from 'primeng/image';
+import { MenubarModule } from 'primeng/menubar';
+import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
+
 
 
 
@@ -16,6 +20,9 @@ const primeNG: any = [
   StyleClassModule,
   GalleriaModule,
   ImageModule,
+  MenubarModule,
+  AvatarModule,
+  BadgeModule,
 ]
 
 

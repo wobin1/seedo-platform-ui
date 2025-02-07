@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpServiceService } from '../../../shared/http-service.service';
+import { CourseService } from '../../../shared/services/course.service';
 
 @Component({
   selector: 'app-course',
@@ -22,14 +24,31 @@ export class CourseComponent {
     { "course_title": "Kimiyyar Shuka", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail3.jpg" },
   ]
 
+  constructor(
+              private api: HttpServiceService,
+              private courseService: CourseService,
+            ){ }
+
+  ngOnInit(): void {
+    this.getCourses();
+  }
+
+  getCourses(){
+    this.courseService.getCourses().subscribe(
+      res=>{
+        this.courses = res;
+      }, err=>{
+        console.log(err)
+      }
+    )
+  }
+
+
   openChapter(id:number){
     this.open = !this.open;
     this.currentId = id;
   }
 
-  // closeChapter(){
-  //   this.open = false;
-  //   this.currentId = 0;
-  // }
+
 
 }

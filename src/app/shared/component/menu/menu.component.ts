@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class MenuComponent {
 
   dropdown:boolean = false;
+  active:string = ''
 
   constructor(private router: Router){}
 
