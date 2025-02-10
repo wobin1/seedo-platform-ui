@@ -1,12 +1,152 @@
 
-<!-- <app-menu></app-menu> -->
-
-<div class=" bg-white w-full mx-auto px-6 lg:px-12 py-8 mt-8 max-w-[1100px] h-full rounded-md">
-
-  <app-manage-database [hauseCourses]="courses" [IgboCourses]="IgboCourses" [YorubaCourses]="YorubaCourses"></app-manage-database>
-
+<div class="heading flex justify-end">
+  <button (click)="showCreateCourseDialog()" class="bg-primary text-white text-sm font-small rounded-md px-4 py-3 flex items-center gap-1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+    </svg>
+    Create course
+  </button>
 </div>
 
-<div class="mt-8">
-  <app-footer></app-footer>
+<div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <app-course-card courseCategory="Animal Farming" totalLessons="15" [lessonWatched]=7 courseTitle="Fish Farming on a very large scale in Nigeria" (courseDetailRoute)="route('app/courses/' + 1)"></app-course-card>
+  <app-course-card courseCategory="Animal Farming" totalLessons="15" [lessonWatched]=7 courseTitle="Fish Farming on a very large scale in Nigeria" (courseDetailRoute)="route('app/courses/' + 1)"></app-course-card>
+  <app-course-card courseCategory="Animal Farming" totalLessons="15" [lessonWatched]=7 courseTitle="Fish Farming on a very large scale in Nigeria" (courseDetailRoute)="route('app/courses/' + 1)"></app-course-card>
+  <app-course-card courseCategory="Animal Farming" totalLessons="15" [lessonWatched]=7 courseTitle="Fish Farming on a very large scale in Nigeria" (courseDetailRoute)="route('app/courses/' + 1)"></app-course-card>
+</div>
+
+
+
+<!-- create course -->
+<div class="card flex justify-content-center">
+  <p-dialog
+      header="Header"
+      [(visible)]="createCourse"
+      [modal]="true"
+      [style]="{ width: '40rem' }">
+          <ng-template pTemplate="header">
+              <div class="inline-flex align-items-center justify-content-center gap-2">
+
+                  <h4>Create a new course</h4>
+              </div>
+          </ng-template>
+          <!-- Comment Form -->
+          <div class="w-full px-4  sm:px-6 lg:px-8 mx-auto">
+            <div class="mx-auto max-w-2xl">
+
+              <!-- Card -->
+              <form>
+                <div class="mb-4 sm:mb-8">
+                  <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium">Course title</label>
+                  <input type="text" id="hs-feedback-post-comment-name-1" class=" border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Course title">
+                </div>
+
+                <div class="mb-4 sm:mb-8 w-full ">
+                        <p-multiSelect
+                            [options]="cities"
+                            formControlName="                                                                                                                                                         "
+                            styleClass="w-full border "
+                            optionLabel="name"
+                            placeholder="Select Author"/>
+
+                            <div class="flex justify-end mt-4 gap-2 cursor-pointer items">
+                              <span (click)="showCreateAuthoDialog()" class="text-sm active:text-gray-500">Add Author</span>
+                              <span class="text-primary active:text-primary/85">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                                </svg>
+                              </span>
+                            </div>
+                </div>
+
+                <div>
+                  <label for="hs-feedback-post-comment-textarea-1" class="block mb-2 text-sm font-medium">Course description</label>
+                  <div class="mt-1">
+                    <textarea id="hs-feedback-post-comment-textarea-1" name="hs-feedback-post-comment-textarea-1" rows="3" class=" border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Enter course description..."></textarea>
+                  </div>
+                </div>
+              </form>
+
+              <!-- End Card -->
+            </div>
+          </div>
+          <!-- End Comment Form -->
+          <ng-template pTemplate="footer">
+             <div class="flex gap-2 w-full justify-end">
+                <p-button
+                label="Cancel"
+                [text]="true"
+                severity="secondary"
+                styleClass="border bg-red-600 text-sm font-medium text-white px-4 py-2"
+                (onClick)="createCourse = false" />
+                <p-button
+                    label="Save"
+                    [outlined]="true"
+                    styleClass="border bg-primary text-sm font-medium text-white px-4 py-2"
+                    severity="secondary"
+                    (onClick)="createCourse = false"/>
+             </div>
+          </ng-template>
+  </p-dialog>
+</div>
+
+
+<!-- create Author -->
+<div class="card flex justify-content-center">
+  <p-dialog
+      header="Header"
+      [(visible)]="createAuthor"
+      [modal]="true"
+      [style]="{ width: '30rem' }">
+          <ng-template pTemplate="header">
+              <div class="inline-flex align-items-center justify-content-center gap-2">
+
+                  <h4>Create a new Author</h4>
+              </div>
+          </ng-template>
+          <!-- Comment Form -->
+          <div class="w-full px-4 mx-auto">
+            <div class="mx-auto max-w-2xl">
+
+              <!-- Card -->
+              <form>
+                <div class="mb-4 sm:mb-8">
+                  <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium">Name</label>
+                  <input type="text" id="hs-feedback-post-comment-name-1" class=" border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Author name">
+                </div>
+
+                <div class="mb-4 sm:mb-8">
+                  <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium">Email</label>
+                  <input type="text" id="hs-feedback-post-comment-name-1" class=" border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Email">
+                </div>
+
+                <div>
+                  <label for="hs-feedback-post-comment-textarea-1" class="block mb-2 text-sm font-medium">About Author</label>
+                  <div class="mt-1">
+                    <textarea id="hs-feedback-post-comment-textarea-1" name="hs-feedback-post-comment-textarea-1" rows="3" class=" border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Enter Author's bio"></textarea>
+                  </div>
+                </div>
+              </form>
+
+              <!-- End Card -->
+            </div>
+          </div>
+          <!-- End Comment Form -->
+          <ng-template pTemplate="footer">
+             <div class="flex gap-2 w-full justify-end">
+                <p-button
+                label="Cancel"
+                [text]="true"
+                severity="secondary"
+                styleClass="border bg-red-600 text-sm font-medium text-white px-4 py-2"
+                (onClick)="createAuthor = false" />
+                <p-button
+                    label="Save"
+                    [outlined]="true"
+                    styleClass="border bg-primary text-sm font-medium text-white px-4 py-2"
+                    severity="secondary"
+                    (onClick)="createAuthor = false"/>
+             </div>
+          </ng-template>
+  </p-dialog>
 </div>

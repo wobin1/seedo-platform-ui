@@ -8,8 +8,6 @@ import { CourseComponent } from './course/course.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ManageDatabaseComponent } from './manage-database/manage-database.component';
 import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { PrimengModule } from '../../primeng/primeng.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,8 +24,6 @@ import { CommunityComponent } from './community/community.component';
     CourseComponent,
     ManageDatabaseComponent,
     AboutComponent,
-    LoginComponent,
-    RegisterComponent,
     DashboardComponent,
     BookComponent,
     QuizComponent,
@@ -40,6 +36,7 @@ import { CommunityComponent } from './community/community.component';
     PrimengModule,
     HttpClientModule,
     ReactiveFormsModule
+
   ]
 })
 export class AppLayoutModule { }

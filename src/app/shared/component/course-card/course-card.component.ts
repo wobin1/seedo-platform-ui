@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-course-card',
@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrl: './course-card.component.scss'
 })
 export class CourseCardComponent {
+  @Input() courseTitle!: string;
+  @Input() totalLessons!: string;
+  @Input() lessonWatched!: number;
+  @Input() progressPercentage!: string;
+  @Input() courseCategory!: string;
+  @Output() courseDetailRoute = new EventEmitter();
+
+
+  onClick(){
+    this.courseDetailRoute.emit();
+  }
 
 }

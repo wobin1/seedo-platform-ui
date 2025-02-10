@@ -11,6 +11,9 @@ import { PrimengModule } from '../primeng/primeng.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CourseCardComponent } from './component/course-card/course-card.component';
+import { EmptyComponent } from './empty/empty.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -23,7 +26,10 @@ import { CourseCardComponent } from './component/course-card/course-card.compone
     ImageCardComponent,
     SearchUploadHeaderComponent,
     AboutHeroComponent,
-    CourseCardComponent
+    CourseCardComponent,
+    EmptyComponent,
+    ComingSoonComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +46,8 @@ import { CourseCardComponent } from './component/course-card/course-card.compone
     HttpClientModule,
     ReactiveFormsModule,
     CourseCardComponent,
+    EmptyComponent,
+    ComingSoonComponent
   ]
 })
 export class SharedModule { }

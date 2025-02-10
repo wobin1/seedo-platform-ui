@@ -1,9 +1,63 @@
 <div class="section ">
 
-  <div class="bg-white w-full mx-auto px-6 lg:px-12 py-8 mt-8 max-w-[1100px] h-full rounded-md">
+  <div class="">
+    <p-breadcrumb
+        styleClass="bg-transparent w-full"
+        [model]="items"
+        [home]="home" />
 
-    <div class="course flex flex-col lg:flex-row gap-20">
-      <div class="section-one basis-[70%]">
+
+</div>
+
+<p-toast/>
+
+<div class="w-full flex justify-between items-center">
+<div class="stats px-4 flex items-center gap-2 text-xs">
+  <div class="flex items-center gap-1">
+    <span class="text-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+        <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"/>
+      </svg>
+    </span>
+    <span class="text-gray-500">38 Lessons</span>
+   </div>
+   <div class="flex items-center gap-1">
+    <span class="text-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+      </svg>
+    </span>
+    <span class="text-gray-500">4hr 30mins</span>
+   </div>
+
+</div>
+
+ <div class="flex gap-2 items-center">
+  <button class="bg-primary text-white text-xs font-small rounded-md px-4 py-3 flex items-center gap-1">
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
+      </svg>
+    </span>
+    Enroll Now
+  </button>
+
+  <button (click)="showAddLessonDialog()" class="bg-white text-primary border border-primary text-sm font-small rounded-md px-4 py-2 flex items-center gap-1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+    </svg>
+    Add Lesson
+  </button>
+ </div>
+
+</div>
+
+  <div class=" w-full mx-auto h-full mt-6 rounded-md">
+
+    <div class="course flex flex-col lg:flex-row gap-8">
+      <div class="section-one basis-[65%]">
 
 
         <div class=" w-full">
@@ -13,97 +67,122 @@
           </video>
         </div>
 
-        <div class="vid-title text-lg font-bold mt-4">Yadda zaku shuka dankalin turawa a gida</div>
-
-
         <div class="course-detail mt-8">
-          <div class="heading flex gap-12 text-lg text-primary font-semibold ">
-            <nav class="hover:border-b-2 border-secondary cursor-pointer ">Bayani</nav>
-            <nav class="hover:border-b-2 border-secondary cursor-pointer">Fayali</nav>
+          <div class="heading overflow-x-auto w-full max-w-[400] flex gap-4 text-lg text-primary font-semibold ">
+            <nav (click)="toggleSubmenu('overview')" [ngClass]="{'bg-secondary/35 text-primary': subMenu=='overview'}" class=" hover:bg-secondary/25 bg-secondary/35 text-gray-800 hover:text-primary px-4 py-2 text-sm font-medium rounded-md cursor-pointer ">Overview</nav>
+            <nav (click)="toggleSubmenu('author')" [ngClass]="{'bg-secondary/35 text-primary': subMenu=='author'}" class=" hover:bg-secondary/25  text-gray-800 hover:text-primary px-4 py-2 text-sm font-medium rounded-md cursor-pointer">Author</nav>
+            <nav (click)="toggleSubmenu('anouncement')" [ngClass]="{'bg-secondary/35 text-primary': subMenu=='anouncement'}" class=" hover:bg-secondary/25  text-gray-800 hover:text-primary px-4 py-2 text-sm font-medium rounded-md cursor-pointer">Anoucement</nav>
+            <nav (click)="toggleSubmenu('reviews')" [ngClass]="{'bg-secondary/35 text-primary': subMenu=='reviews'}" class=" hover:bg-secondary/25  text-gray-800 hover:text-primary px-4 py-2 text-sm font-medium rounded-md cursor-pointer">reviews</nav>
           </div>
 
-          <div class="detail mt-4">
-            Muna muku maraba da zuwa shanfin manhajar mu ta seedo inda ilimin amfanin tafiyar da  gona ya gamu da ilimin fasaha da kimiyya ta zamani waenda zasu kawo cigaba a harkar noma.
+          <div *ngIf="this.subMenu=='overview'" class=" bg-white border p-4 rounded-xl h-[300px] overflow-auto  mt-4">
+            <h4 class="font-bold text-gray-800 capitalize">About Course</h4>
+            <p class="text-gray-600 mt-2">
+              Muna muku maraba da zuwa shanfin manhajar mu ta seedo inda ilimin amfanin
+              tafiyar da  gona ya gamu da ilimin fasaha da kimiyya ta zamani waenda zasu
+              kawo cigaba a harkar noma.
+            </p>
+
+            <h4 class="font-bold text-gray-800 capitalize mt-6">What you will learn</h4>
+            <ul class="mt-2 grid grid-cols-2">
+              <li class="flex gap-2 items-center">
+                <span class="text-secondary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                    <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
+                    <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+                  </svg>
+                </span>
+
+                <p class="text-sm">How to farm like a monster</p>
+              </li>
+
+              <li class="flex gap-2 items-center">
+                <span class="text-secondary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                    <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
+                    <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+                  </svg>
+                </span>
+
+                <p class="text-sm">How to farm like a monster</p>
+              </li>
+
+            </ul>
           </div>
+
+          <div *ngIf="this.subMenu=='author'" class=" bg-white border p-4 rounded-xl h-[300px] overflow-auto  mt-4">
+            <h4 class="font-bold text-gray-800 capitalize">About Author</h4>
+            <p class="text-gray-600 mt-2">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et ducimus facilis
+              porro repellendus, maxime totam incidunt explicabo suscipit, iste eligendi,
+              adipisci ab harum voluptas temporibus laudantium tempora vero corrupti ex!
+            </p>
+
+
+          </div>
+
+          <div *ngIf="this.subMenu=='anouncement'" class=" bg-white border p-4 rounded-xl h-[300px] overflow-auto  mt-4">
+            <h4 class="font-bold text-gray-800 capitalize">Title one</h4>
+            <p class="text-gray-600 mt-2">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et ducimus facilis
+              porro repellendus, maxime totam incidunt explicabo suscipit, iste eligendi,
+              adipisci ab harum voluptas temporibus laudantium tempora vero corrupti ex!
+            </p>
+          </div>
+
+          <div *ngIf="this.subMenu=='reviews'" class=" bg-white border p-4 rounded-xl h-[300px] overflow-auto  mt-4">
+            <div class="border p-2 rounded-md">
+              <p class="text-gray-600 mt-2 ">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et ducimus facilis
+                porro repellendus, maxime totam incidunt explicabo suscipit, iste eligendi,
+                adipisci ab harum voluptas temporibus laudantium tempora vero corrupti ex!
+              </p>
+              <div class="flex justify-content-center">
+                <p class="text-sm font-semibold w-full flex justify-end mt-2">
+                  Nathaniel Musa
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
-      <div class="section-two basis-[30%]">
-        <div class="language-filter bg-black flex gap-2 rounded-md py-4 justify-center">
-          <span class="text-gray-500 text-sm text-center">Choose a language</span>
-          <span class="text-white text-center flex gap-2 text-sm items-center">
-            Hausa
-            <span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
-              </svg>
-            </span>
-          </span>
+      <div class="section-two basis-[35%] border ">
+
+        <div class="title p-4 border bg-white">
+          <h4 class="text-gray-800 font-semibold">
+            Course Content
+          </h4>
         </div>
 
-        <div class="section-title mt-8 font-bold text-xl">Abin Dake ciki</div>
+        <div class="course-content">
+          <div class="card flex justify-content-center">
+            <div class="card w-full">
+              <p-accordion [activeIndex]="0" >
+                  <p-accordionTab styleClass="font-medium bg-white" *ngFor="let tab of tabs">
 
-        <div class="course" *ngFor="let row of course">
-          <div (click)="openChapter(row.id)" class="course bg-gray-200 hover:bg-secondary hover:text-white  flex gap-2 rounded-md py-4 justify-between px-4 mt-2">
-            <span class=" text-center flex gap-4 font-bold items-center">
-              <span class=" text-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
-                  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-                </svg>
-              </span>
-                {{row.title}}
-            </span>
+                    <ng-template pTemplate="header">
+                      <div class="flex align-items-center gap-2">
+                          <h4 class="text-gray-800 text-sm">{{tab.title}}</h4>
+                      </div>
+                  </ng-template>
 
-            <span  class=" font-bold text-center flex gap-2 items-center">
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
-                </svg>
-              </span>
-            </span>
+                      <div class="flex items-center gap-2">
+                        <span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                            <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                          </svg>
+                        </span>
+                        <p>
+                          {{tab.content}}
+                        </p>
+                      </div>
+                  </p-accordionTab>
+              </p-accordion>
           </div>
-
-          <div *ngIf="open && row.id==currentId" class="course  hover:text-secondary  flex gap-2 rounded-md py-4 justify-between px-4 mt-2">
-            <span class=" text-center flex gap-4 items-center">
-
-                <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
-                  </svg>
-                </span>
-                {{row.title}}
-            </span>
-
-            <span class="text-center flex gap-2 items-center">
-              <span>
-               1: 00min
-              </span>
-            </span>
-          </div>
-
-          <div *ngIf="open && row.id==currentId" class="course  hover:text-secondary  flex gap-2 rounded-md py-4 justify-between px-4 mt-2">
-            <span class=" text-center flex gap-4 items-center">
-
-                <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
-                  </svg>
-                </span>
-                {{row.title}}
-            </span>
-
-            <span class="text-center flex gap-2 items-center">
-              <span>
-               1: 00min
-              </span>
-            </span>
-          </div>
-
-
         </div>
-
-
-
+        </div>
 
       </div>
     </div>
@@ -124,7 +203,85 @@
 
   </div>
 
-  <div class="mt-8">
-    <app-footer></app-footer>
-  </div>
+
+</div>
+
+
+
+
+<!-- Add lesson modal -->
+<div class="card flex justify-content-center">
+  <p-dialog
+      header="Header"
+      [(visible)]="addLesson"
+      [modal]="true"
+      [style]="{ width: '25rem' }">
+          <ng-template pTemplate="header">
+              <div class="inline-flex align-items-center justify-content-center gap-2">
+
+                  <h4>Add new Lesson</h4>
+              </div>
+          </ng-template>
+          <!-- Comment Form -->
+          <div class="w-full  mx-auto">
+            <div class="mx-auto max-w-2xl">
+
+              <!-- Card -->
+              <form>
+                <div class="mb-2">
+                  <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium">Title</label>
+                  <input type="text" id="hs-feedback-post-comment-name-1" class=" border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Course title">
+                </div>
+
+                <div>
+                  <label for="hs-feedback-post-comment-textarea-1" class="block mb-2 text-sm font-medium">Lesson description</label>
+                  <div class="mt-1">
+                    <textarea id="hs-feedback-post-comment-textarea-1" name="hs-feedback-post-comment-textarea-1" rows="3" class=" border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Enter Lesson description"></textarea>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="fileUpload">
+
+                    <div  class="mt-4 flex justify-between">
+                      <p>{{videoFile?.name}}</p>
+                      <div type="" class="flex gap-2 items-center text-sm text-primary">
+                        Upload video
+                        <span class="text-primary ">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383"/>
+                            <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </label>
+                  <input (change)="onImageChange($event)" id="fileUpload" type="file" class="hidden">
+                </div>
+
+
+              </form>
+
+              <!-- End Card -->
+            </div>
+          </div>
+          <!-- End Comment Form -->
+          <ng-template pTemplate="footer">
+             <div class="flex gap-2 w-full justify-end">
+                <!-- <p-button
+                label="Cancel"
+                [text]="true"
+                severity="secondary"
+                styleClass="border bg-red-600 text-sm font-medium text-white px-4 py-2"
+                (onClick)="addLesson = false" /> -->
+                <p-button
+                    label="Save"
+                    [loading]="loading"
+                    [outlined]="true"
+                    styleClass="border bg-primary text-sm font-medium text-white px-4 py-2"
+                    severity="secondary"
+                    (onClick)="handleCreateLesson()"/>
+             </div>
+          </ng-template>
+  </p-dialog>
 </div>

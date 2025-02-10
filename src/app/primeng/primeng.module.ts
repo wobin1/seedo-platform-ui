@@ -9,6 +9,11 @@ import { ImageModule } from 'primeng/image';
 import { MenubarModule } from 'primeng/menubar';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { AccordionModule } from 'primeng/accordion';
+import { DialogModule } from 'primeng/dialog';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { SidebarModule } from 'primeng/sidebar';
 
 
 
@@ -23,6 +28,11 @@ const primeNG: any = [
   MenubarModule,
   AvatarModule,
   BadgeModule,
+  BreadcrumbModule,
+  AccordionModule,
+  DialogModule,
+  MultiSelectModule,
+  SidebarModule
 ]
 
 

@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./views/app-layout/app-layout.module').then((m)=> m.AppLayoutModule)
-  }
+  },
+  {
+    path: '',
+    loadChildren: () => import('./views/auth-layout/auth-layout.module').then((m)=> m.AuthLayoutModule)
+  },
 ];
 
 @NgModule({

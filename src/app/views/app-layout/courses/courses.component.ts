@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CourseService } from '../../../shared/services/course.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -11,18 +12,41 @@ export class CoursesComponent {
   courses:any;
   IgboCourses:any;
   YorubaCourses:any;
+  createCourse:boolean = false;
+  createAuthor:boolean = false;
+  cities: any;
 
-  constructor(private courseService:CourseService){}
+  selectedCities:any;
+
+  constructor(private courseService:CourseService, private router:Router){}
+
+
+    ngOnInint(){}
+
+    route(page:string){
+      this.router.navigate([page]);
+    }
+
+
+    showCreateCourseDialog() {
+        this.createCourse = true;
+        this.createAuthor = false;
+    }
+
+    showCreateAuthoDialog() {
+      this.createCourse = false;
+      this.createAuthor = true;
+  }
+
 
   ngOnInit(){
-    // this.courses = [
-    //   { "course_title": "Noma mai dorewa", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail1.jpg" },
-    //   { "course_title": "Kasuwancin noma", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail2.jpg" },
-    //   { "course_title": "Kimiyyar Shuka", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail3.jpg" },
-    //   { "course_title": "Kimiyyar k'asa", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail4.jpg" },
-    //   { "course_title": "Tattalin Arzikin Noma", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail5.jpg" },
-    //   { "course_title": "fadada harkar noma", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail6.jpg" }
-    // ];
+    this.cities = [
+      {name: 'Nathaniel Musa', code: 'NY'},
+      {name: 'Jon Doe', code: 'RM'},
+      {name: 'Jane Rode', code: 'LDN'},
+      {name: 'Peter Tem', code: 'IST'},
+      {name: 'Joice James', code: 'PRS'}
+  ];
 
     this.getCourses()
   }
