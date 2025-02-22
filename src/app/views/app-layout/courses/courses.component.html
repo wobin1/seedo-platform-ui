@@ -9,10 +9,9 @@
 </div>
 
 <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-  <app-course-card courseCategory="Animal Farming" totalLessons="15" [lessonWatched]=7 courseTitle="Fish Farming on a very large scale in Nigeria" (courseDetailRoute)="route('app/courses/' + 1)"></app-course-card>
-  <app-course-card courseCategory="Animal Farming" totalLessons="15" [lessonWatched]=7 courseTitle="Fish Farming on a very large scale in Nigeria" (courseDetailRoute)="route('app/courses/' + 1)"></app-course-card>
-  <app-course-card courseCategory="Animal Farming" totalLessons="15" [lessonWatched]=7 courseTitle="Fish Farming on a very large scale in Nigeria" (courseDetailRoute)="route('app/courses/' + 1)"></app-course-card>
-  <app-course-card courseCategory="Animal Farming" totalLessons="15" [lessonWatched]=7 courseTitle="Fish Farming on a very large scale in Nigeria" (courseDetailRoute)="route('app/courses/' + 1)"></app-course-card>
+  <ng-container *ngFor="let item of courses">
+    <app-course-card [isCoursesPage]="true" [courseCategory]="item.title" [totalLessons]="item.modules.length"  [courseTitle]="item.title" (courseDetailRoute)="route('app/courses/' + item.id)"></app-course-card>
+  </ng-container>
 </div>
 
 
@@ -35,7 +34,7 @@
             <div class="mx-auto max-w-2xl">
 
               <!-- Card -->
-              <form>
+              <form >
                 <div class="mb-4 sm:mb-8">
                   <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium">Course title</label>
                   <input type="text" id="hs-feedback-post-comment-name-1" class=" border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Course title">
@@ -44,7 +43,6 @@
                 <div class="mb-4 sm:mb-8 w-full ">
                         <p-multiSelect
                             [options]="cities"
-                            formControlName="                                                                                                                                                         "
                             styleClass="w-full border "
                             optionLabel="name"
                             placeholder="Select Author"/>

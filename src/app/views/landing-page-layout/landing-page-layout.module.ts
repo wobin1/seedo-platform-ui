@@ -8,6 +8,9 @@ import { AboutComponent } from './about/about.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ContactComponent } from './contact/contact.component';
 import { PrimengModule } from '../../primeng/primeng.module';
+import { BlogComponent } from './blog/blog.component';
+import { ProductsComponent } from './products/products.component';
+import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { PrimengModule } from '../../primeng/primeng.module';
     LandingPageLayoutComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    BlogComponent,
+    ProductsComponent,
+    BlogDetailComponent
   ],
   imports: [
     CommonModule,

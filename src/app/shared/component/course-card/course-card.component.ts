@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CourseCardComponent {
   @Input() courseTitle!: string;
+  @Input() isCoursesPage:boolean = false;
   @Input() totalLessons!: string;
   @Input() lessonWatched!: number;
   @Input() progressPercentage!: string;
@@ -17,5 +18,6 @@ export class CourseCardComponent {
   onClick(){
     this.courseDetailRoute.emit();
   }
+
 
 }

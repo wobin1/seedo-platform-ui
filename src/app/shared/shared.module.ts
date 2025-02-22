@@ -14,6 +14,10 @@ import { CourseCardComponent } from './component/course-card/course-card.compone
 import { EmptyComponent } from './empty/empty.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BlogCardComponent } from './component/blog-card/blog-card.component';
+import { ProductCardComponent } from './component/product-card/product-card.component';
+import { ProductDetailComponent } from './component/product-detail/product-detail.component';
+import { LoaderComponent } from './component/loader/loader.component';
 
 
 
@@ -29,7 +33,12 @@ import { ProfileComponent } from './profile/profile.component';
     CourseCardComponent,
     EmptyComponent,
     ComingSoonComponent,
-    ProfileComponent
+    ProfileComponent,
+    BlogCardComponent,
+    EmptyComponent,
+    ProductCardComponent,
+    ProductDetailComponent,
+    LoaderComponent,
   ],
   imports: [
     CommonModule,
@@ -47,7 +56,13 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     CourseCardComponent,
     EmptyComponent,
-    ComingSoonComponent
+    ComingSoonComponent,
+    BlogCardComponent,
+    EmptyComponent,
+    ProductCardComponent,
+    ProductDetailComponent,
+    LoaderComponent
+
   ]
 })
 export class SharedModule { }

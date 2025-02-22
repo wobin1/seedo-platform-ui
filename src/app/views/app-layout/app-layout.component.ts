@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpServiceService } from '../../shared/http-service.service';
 
 @Component({
   selector: 'app-app-layout',
@@ -12,8 +13,11 @@ export class AppLayoutComponent {
   mobileSidebar:boolean = true;
   currentMenu:string = ''
   profilevisible:boolean = false;
+  userProfile:any;
 
-  constructor(private router: Router){}
+  constructor(private router: Router,
+              private api:HttpServiceService
+            ){}
 
 
   ngOnInit(){
@@ -43,6 +47,17 @@ export class AppLayoutComponent {
 
   toggleProfileVisible(){
     this.profilevisible = !this.profilevisible;
+  }
+
+  getUserProfile(){
+    this.api.get('users/profile').subscribe(
+      res=>{
+        this.userProfile = res
+        console.log('user profile', this.userProfile);
+      }, err =>{
+        console.log(err)
+      }
+    )
   }
 
 }

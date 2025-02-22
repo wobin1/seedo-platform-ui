@@ -15,7 +15,7 @@ export class CourseService {
     }
 
     getSingleCourse(id:any): Observable<any>{
-      return this.api.get('course/' + id).pipe(map(res => res))
+      return this.api.get('courses/' + id).pipe(map(res => res))
     }
 
     createCourse(courseData:any): Observable<any>{

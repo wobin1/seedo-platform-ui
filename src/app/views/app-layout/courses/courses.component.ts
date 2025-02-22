@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CourseService } from '../../../shared/services/course.service';
 import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-courses',
@@ -18,7 +19,7 @@ export class CoursesComponent {
 
   selectedCities:any;
 
-  constructor(private courseService:CourseService, private router:Router){}
+  constructor(private courseService:CourseService, private router:Router, private fb:FormBuilder){}
 
 
     ngOnInint(){}
@@ -26,6 +27,7 @@ export class CoursesComponent {
     route(page:string){
       this.router.navigate([page]);
     }
+
 
 
     showCreateCourseDialog() {
@@ -56,7 +58,7 @@ export class CoursesComponent {
     this.courseService.getCourses().subscribe(
       res=>{
         this.courses = res;
-        console.log(this.courses)
+        console.log('fetched courses', this.courses)
       }, err=>{
         console.log(err)
       }

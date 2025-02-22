@@ -16,17 +16,12 @@ export class CourseComponent {
 
   open = false
   currentId=0
+  contentId: any=0
   addLesson:boolean = false;
   course:any;
   subMenu:string = 'overview';
   videoFile:any;
 
-
-  courses = [
-    { "course_title": "fadada harkar noma", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail6.jpg" },
-    { "course_title": "Kasuwancin noma", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail2.jpg" },
-    { "course_title": "Kimiyyar Shuka", views: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 100), "image": "assets/thumbnail3.jpg" },
-  ]
 
   items: MenuItem[] | undefined;
 
@@ -44,7 +39,7 @@ export class CourseComponent {
             ){ }
 
   ngOnInit(): void {
-    this.getCourses();
+    this.getCourse();
 
     this.uploadLessonForm = this.fb.group({
       title: ['', Validators.required],
@@ -59,11 +54,7 @@ export class CourseComponent {
   this.home = { icon: 'pi pi-home', routerLink: '/app/courses',  };
   }
 
-  tabs = [
-    { title: 'Title 1', content: 'Content 1' },
-    { title: 'Title 2', content: 'Content 2' },
-    { title: 'Title 3', content: 'Content 3' }
-];
+  tabs:any = [];
 
    get f(){return this.uploadLessonForm.controls}
 
@@ -84,7 +75,7 @@ export class CourseComponent {
     this.api.post('courses/create/', formData).subscribe(
       res=>{
         this.loading = false;
-        this.getCourses();
+        // this.getCourses();
         this.uploadLessonForm.reset();
         this.addLesson = false;
         this.messageService.add({ severity:'success', summary: 'Video uploaded successfully', detail: '' });
@@ -101,10 +92,16 @@ export class CourseComponent {
     this.router.navigate([page])
   }
 
-  getCourses(){
-    this.courseService.getCourses().subscribe(
+  getCourse(){
+    this.courseService.getSingleCourse(this.getParamsId()).subscribe(
       res=>{
-        this.courses = res;
+        this.course = res;
+
+        for(let item of this.course.modules){
+          let course:any = { title: item.title, content: item.video }
+          this.tabs.push(course);
+          console.log(this.tabs)
+        }
       }, err=>{
         console.log(err)
       }
@@ -132,6 +129,15 @@ export class CourseComponent {
   openChapter(id:number){
     this.open = !this.open;
     this.currentId = id;
+  }
+  getParamsId(){
+    const url = window.location.href;
+    console.log('url', url);
+    const segments = url.split('/');
+    console.log('segments', segments)
+    this.contentId = segments[segments.length - 1];
+
+    return this.contentId;
   }
 
 
