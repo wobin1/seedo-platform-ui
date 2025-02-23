@@ -7,6 +7,13 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { PrimengModule } from './primeng/primeng.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { AuthInterceptor } from './shared/auth.interceptor';
+
+
+// providers: [
+//   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+// ]
 
 @NgModule({
   declarations: [

@@ -16,6 +16,7 @@ export class BlogDetailComponent {
   loading:boolean = false;
   relatedNews:any;
   localContent:any;
+  blogContent:any;
 
   constructor(private api:HttpServiceService,
               private router:Router,
@@ -36,6 +37,7 @@ export class BlogDetailComponent {
     )
 
     this.getContent(this.getParamsId())
+    this.getBlogContent()
 
   }
 
@@ -74,6 +76,21 @@ export class BlogDetailComponent {
         let response:any = res;
         this.content = response;
         console.log('content', this.content);
+        this.loading = false;
+      }, err=>{
+        console.log(err);
+        this.loading = false;
+      }
+    )
+  }
+
+  getBlogContent(){
+    this.loading = true;
+    this.api.get(`blog/`).subscribe(
+      res=>{
+        let response:any=res
+        this.blogContent = response.slice(0, 4)
+        console.log(this.blogContent)
         this.loading = false;
       }, err=>{
         console.log(err);

@@ -24,10 +24,13 @@ export class AppLayoutComponent {
     let segments = this.router.url.split('/').filter(segment => segment);
     this.currentMenu = segments.length ? segments[segments.length - 1] : '';
     console.log('this.currentMenu = ', this.currentMenu);
+
+    this.getUserProfile()
   }
 
   route(page:string){
     this.router.navigate([page]);
+    this.profilevisible = false;
   }
 
   toggleProfile(){

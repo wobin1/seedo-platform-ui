@@ -1,0 +1,370 @@
+
+
+<div class="bg-gray-100">
+
+  <!-- ========== HEADER ========== -->
+  <header class="sticky top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-[48] w-full bg-white border-b text-sm py-2.5 lg:ps-[260px]">
+    <nav class="px-4 sm:px-6 flex basis-full items-center w-full mx-auto">
+      <div class="me-5 lg:me-0 lg:hidden">
+        <!-- Logo -->
+        <a class="flex-none rounded-md text-xl inline-block font-semibold focus:outline-none focus:opacity-80"  aria-label="Preline">
+          <img src="assets/logo.png" class="w-16 h-8 object-contain" alt="">
+        </a>
+        <!-- End Logo -->
+
+        <div class="lg:hidden ms-1">
+
+        </div>
+      </div>
+
+      <div class="w-full flex items-center justify-end ms-auto md:justify-between gap-x-1 md:gap-x-3">
+
+        <div class="hidden md:block">
+          <!-- Search Input -->
+          <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">
+              <svg class="shrink-0 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <input type="text" class="py-2 ps-10 pe-16 block w-full border outline-none bg-white border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Search">
+            <div class="hidden absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-1">
+              <button type="button" class="inline-flex shrink-0 justify-center items-center size-6 rounded-full text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+              </button>
+            </div>
+            <div class="absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-3 text-gray-400">
+              <svg class="shrink-0 size-3 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></svg>
+              <span class="mx-1">
+                <svg class="shrink-0 size-3 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              </span>
+              <span class="text-xs">/</span>
+            </div>
+          </div>
+          <!-- End Search Input -->
+        </div>
+
+        <div class="flex flex-row items-center justify-end gap-1">
+          <button type="button" class="md:hidden size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-secondary/25 focus:outline-none  disabled:opacity-50 disabled:pointer-events-none">
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <span class="sr-only">Search</span>
+          </button>
+
+          <button type="button" class="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-secondary/25 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none">
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            <span class="sr-only">Notifications</span>
+          </button>
+
+          <button (click)="route('/auth/login')" type="button" class="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-secondary/25 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+              </svg>
+            </span>
+            <span class="sr-only">Logout</span>
+          </button>
+
+
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- ========== END HEADER ========== -->
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <div class="-mt-px">
+    <!-- Breadcrumb -->
+    <div class="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 lg:px-8 lg:hidden">
+      <div class="flex items-center py-2">
+        <!-- Navigation Toggle -->
+        <button (click)="toggleSidebar()" type="button" class="size-8 flex justify-center items-center gap-x-2 border border-gray-200 text-gray-800 hover:text-gray-500 rounded-lg focus:outline-none focus:text-gray-500 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-application-sidebar" aria-label="Toggle navigation" data-hs-overlay="#hs-application-sidebar">
+          <span class="sr-only">Toggle Navigation</span>
+          <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m8 9 3 3-3 3"/></svg>
+        </button>
+        <!-- End Navigation Toggle -->
+
+        <!-- Breadcrumb -->
+        <ol class="ms-3 flex items-center whitespace-nowrap">
+          <li class="flex items-center text-sm text-gray-800">
+            Application Layout
+            <svg class="shrink-0 mx-3 overflow-visible size-2.5 text-gray-400" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 1L10.6869 7.16086C10.8637 7.35239 10.8637 7.64761 10.6869 7.83914L5 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </li>
+          <li class="text-sm font-semibold text-white truncate" aria-current="page">
+            Dashboard
+          </li>
+        </ol>
+        <!-- End Breadcrumb -->
+      </div>
+    </div>
+    <!-- End Breadcrumb -->
+  </div>
+
+  <!-- Sidebar -->
+  <div *ngIf="!sideBar" id="hs-application-sidebar" class="
+   duration-300 transform
+    w-[260px] h-full
+    fixed   z-[60] hidden md:block
+    bg-slate-950 border-e border-gray-200
+    lg:block lg:translate-x-0 lg:end-auto lg:bottom-0
+   "  >
+    <div class="relative flex flex-col h-full max-h-full ">
+      <div class="px-6 pt-4 flex items-center">
+        <!-- Logo -->
+        <a *ngIf="!sideBar" class="flex-none rounded-xl text-xl md:inline-block hidden font-semibold focus:outline-none focus:opacity-80" href="#" aria-label="Preline">
+          <img src="assets/logo.png" class="w-20 h-8 object-contain" alt="">
+        </a>
+        <!-- End Logo -->
+
+        <div class="hidden lg:block ms-2">
+
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
+
+        <!-- profile section -->
+        <div class=" relative  my-8 px-4">
+          <button (click)="toggleProfile()" id="hs-dropdown-example" type="button" class="hs-dropdown-toggle w-full py-3 px-4 inline-flex justify-between items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none  disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+            <div class="flex gap-2 items-center">
+              <div class="image">
+                <img class="shrink-0 size-[30px] rounded-full" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Avatar">
+              </div>
+              {{userProfile?.first_name}} {{userProfile?.last_name | slice:0:1}}.
+            </div>
+            <svg class="hs-dropdown-open:rotate-180 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+
+          <div *ngIf="viewProfile" class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100  w-56 z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-example">
+            <a (click)="toggleProfileVisible()" [ngClass]="{'bg-secondary/25 text-primary': currentMenu==''}" class="flex justify-between items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-white hover:text-primary  hover:bg-secondary/25 focus:outline-none focus:bg-gray-100">
+              View profile
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                </svg>
+              </span>
+            </a>
+
+          </div>
+        </div>
+
+        <nav class="hs-accordion-group p-3 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+          <ul class="flex flex-col space-y-1">
+            <!-- <li>
+              <a (click)="route('/admin/dashboard')" class="flex items-center cursor-pointer gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-800 rounded-lg hover:bg-secondary/25 focus:outline-none focus:bg-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+                </svg>
+                Dashboard
+              </a>
+            </li> -->
+
+            <li  (click)="toggleCurrentMenu('users')" class="hs-accordion" id="users-accordion">
+              <button [ngClass]="{'bg-secondary/25 text-primary': currentMenu=='users'}" (click)="route('/admin/users')" type="button" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-secondary/25 focus:outline-none " aria-expanded="true" aria-controls="users-accordion-child">
+                <span class="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
+                  </svg>
+                </span>
+
+                Users
+              </button>
+            </li>
+
+            <li class="hs-accordion" id="account-accordion">
+              <button (click)="toggleCurrentMenu('courses')" [ngClass]="{'bg-secondary/25 text-primary': currentMenu=='courses'}" (click)="route('/admin/courses')" type="button" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-secondary/25 focus:outline-none " aria-expanded="true" aria-controls="account-accordion-child">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/>
+                </svg>
+              Courses
+              </button>
+            </li>
+
+            <li (click)="toggleCurrentMenu('blog')" class="hs-accordion" id="account-accordion">
+              <button [ngClass]="{'bg-secondary/25 text-primary': currentMenu=='blog'}" (click)="route('/admin/blog')" type="button" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-secondary/25 focus:outline-none " aria-expanded="true" aria-controls="account-accordion-child">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                  <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
+                </svg>
+              Blog
+              </button>
+            </li>
+
+            <li (click)="toggleCurrentMenu('market')">
+              <a [ngClass]="{'bg-secondary/25 text-primary': currentMenu=='market'}" (click)="route('/admin/market')" class="w-full flex cursor-pointer items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-secondary/25" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
+                  <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z"/>
+                </svg>
+              Market
+            </a></li>
+
+          </ul>
+        </nav>
+      </div>
+      <!-- End Content -->
+    </div>
+  </div>
+  <!-- End Sidebar -->
+
+  <!-- Mobile Sidebar -->
+  <div *ngIf="!mobileSidebar" id="hs-application-sidebar" class="
+   duration-300 transform
+    w-[260px] h-full
+    fixed   z-[60] block md:hidden
+    bg-white border-e border-gray-200
+    lg:block lg:translate-x-0 lg:end-auto lg:bottom-0
+   "  >
+    <div class="relative flex flex-col h-full max-h-full">
+      <div class="px-6 pt-4 flex items-center">
+        <!-- Logo -->
+        <a *ngIf="!sideBar" class="flex-none rounded-xl text-xl md:inline-block hidden font-semibold focus:outline-none focus:opacity-80" href="#" aria-label="Preline">
+          <img src="assets/logo.png" class="w-20 h-8 object-contain" alt="">
+        </a>
+        <!-- End Logo -->
+
+        <div class="hidden lg:block ms-2">
+
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
+
+        <!-- profile section -->
+        <div class=" relative  my-8 px-4">
+          <button (click)="toggleProfile()" id="hs-dropdown-example" type="button" class="hs-dropdown-toggle w-full py-3 px-4 inline-flex justify-between items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+            <div class="flex gap-2 items-center">
+              <div class="image">
+                <img class="shrink-0 size-[30px] rounded-full" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Avatar">
+              </div>
+              {{userProfile?.first_name}} {{userProfile?.last_name | slice:0:1}}.
+            </div>
+            <svg class="hs-dropdown-open:rotate-180 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+
+          <div *ngIf="viewProfile" class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100  w-56 z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-example">
+            <a class="flex justify-between items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-secondary/25 focus:outline-none " href="#">
+              View profile
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                </svg>
+              </span>
+            </a>
+
+          </div>
+        </div>
+
+        <nav class="hs-accordion-group p-3 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+          <ul class="flex flex-col space-y-1">
+            <!-- <li>
+              <a (click)="route('/admin/dashboard')" class="flex items-center cursor-pointer gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-800 rounded-lg hover:bg-secondary/25 focus:outline-none focus:bg-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+                </svg>
+                Dashboard
+              </a>
+            </li> -->
+
+            <li class="hs-accordion" id="users-accordion">
+              <button (click)="route('/admin/users')" type="button" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-secondary/25 focus:outline-none " aria-expanded="true" aria-controls="users-accordion-child">
+                <span class="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
+                  </svg>
+                </span>
+
+                Users
+              </button>
+            </li>
+
+            <li class="hs-accordion" id="account-accordion">
+              <button (click)="route('/admin/courses')" type="button" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-secondary/25 focus:outline-none " aria-expanded="true" aria-controls="account-accordion-child">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/>
+                </svg>
+              Courses
+              </button>
+            </li>
+
+            <li>
+              <a (click)="route('/admin/market')" class="w-full flex cursor-pointer items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-secondary/25" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
+                  <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z"/>
+                </svg>
+              Market
+            </a></li>
+
+          </ul>
+        </nav>
+      </div>
+      <!-- End Content -->
+    </div>
+  </div>
+  <!-- End Sidebar -->
+
+  <!-- Content -->
+  <div class="w-full lg:ps-64">
+    <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <!-- End Content -->
+  <!-- ========== END MAIN CONTENT ========== -->
+  </div>
+
+
+
+
+  <p-sidebar [(visible)]="profilevisible" [showCloseIcon]="false" position="right" styleClass="w-[400px]" >
+    <ng-template pTemplate="headless">
+      <div class="">
+        <div class="w-full h-[150px] relative bg-gradient-to-r from-secondary/10 to-primary/35">
+          <div class="absolute top-[80px] px-6 w-full">
+            <div class="image w-[100px] h-[100px] flex justify-center items-center rounded-full shadow-xl">
+              <img src="/assets/images/profile.jpg" class="w-full h-full object-cover shadow-md rounded-full " alt="">
+            </div>
+            <div class="flex w-full justify-between items-end">
+              <h2 class="text-2xl font-bold text-gray-800 mt-4">{{userProfile?.first_name}} {{userProfile?.last_name}}</h2>
+              <p class="text-gray-600 text-sm">2 courses completed</p>
+            </div>
+            <p class="text-sm text-gray-600">
+              <!-- &#64;nathanielmusa<br></p> -->
+
+            <p class="mt-2 text-sm text-gray-500">
+              <!-- Nathaniel Musa is intrested in livestock farming, he has a poultry he is managing. -->
+               {{userProfile?.bio}}
+            </p>
+
+            <div class="mt-6">
+              <h4 class="text-lg font-semi-bold">Courses completed</h4>
+                  <ul *ngIf="userProfile?.completed_courses?.length>0">
+                    <li class="flex items-center gap-2 mt-2">
+                      <img src="/assets/thumbnail7.jpg" class="h-[60px] w-[60px] rounded-md border bg-gray-50" alt="">
+                      <p class="font-medium">Introduction to Fish farming using fire technique</p>
+                    </li>
+                  </ul>
+
+                  <div *ngIf="userProfile?.completed_courses?.length<=0">
+                    <app-empty (btnClick)="route('/app/courses')" message="You have not completed any course, click on the button below to take a course."></app-empty>
+                  </div>
+
+            </div>
+
+
+         </div>
+        </div>
+      </div>
+    </ng-template>
+
+
+
+
+
+  </p-sidebar>
+

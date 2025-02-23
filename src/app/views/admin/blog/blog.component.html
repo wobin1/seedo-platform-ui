@@ -1,0 +1,321 @@
+<div class="card">
+  <p-toast />
+  <p-toolbar styleClass="mb-4 gap-2 bg-white">
+      <ng-template pTemplate="left">
+          <div class="flex gap-2 items-center">
+            <p-button
+              severity="success"
+              label="New"
+              icon="pi pi-plus"
+              class=" bg-secondary px-4 py-2 rounded-md text-white text-sm"
+
+              (onClick)="showCreateUserDialog()" />
+          <p-button
+              severity="danger"
+              label="Delete"
+              icon="pi pi-trash"
+              class="bg-red-600 px-4 py-2 rounded-md text-white text-sm"
+              (onClick)="deleteSelectedProducts()"
+              [disabled]="!selectedProducts || !selectedProducts.length" />
+          </div>
+      </ng-template>
+
+      <ng-template pTemplate="right">
+          <div class="flex gap-2 items-center">
+            <p-fileUpload
+              mode="basic"
+              accept="image/*"
+              [maxFileSize]="1000000"
+              label="Import"
+              chooseLabel="Import"
+              styleClass="px-4 py-2 text-sm "
+              />
+          <p-button
+              severity="help"
+              label="Export"
+              class="bg-purple-600 text-white text-sm px-4 py-2 rounded-md"
+              icon="pi pi-upload" />
+          </div>
+      </ng-template>
+  </p-toolbar>
+
+  <p-table
+      #dt
+      [value]="products"
+      [rows]="10"
+      [paginator]="true"
+      [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+      [tableStyle]=""
+      [(selection)]="selectedProducts"
+      [rowHover]="true"
+      dataKey="id"
+      styleClass="border"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [showCurrentPageReport]="true"
+  >
+      <ng-template pTemplate="caption">
+          <div class="flex justify-between items-center">
+              <h5 class="m-0">Manage Blog Post</h5>
+              <span class="p-input-icon-left">
+                  <i class="pi pi-search"></i>
+                  <p-iconField iconPosition="right">
+                    <p-inputIcon styleClass="pi pi-search" />
+                    <input class="px-4 py-2 text-sm" type="text" pInputText placeholder="Search" />
+                </p-iconField>
+              </span>
+          </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+              <th >
+                  <p-tableHeaderCheckbox  />
+              </th>
+              <th  >
+                  Name
+              </th>
+              <th>
+                  Image
+              </th>
+              <th >
+                  Email
+              </th>
+              <th >
+                Action
+            </th>
+              <!-- <th pSortableColumn="category" style="min-width:10rem">
+                  Category
+              </th> -->
+
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+          <tr>
+              <td>
+                  <p-tableCheckbox [value]="product" />
+              </td>
+              <td>
+                  {{ product.name }}
+              </td>
+              <td>
+              <img
+                  [src]="product.image"
+                  [alt]="product.name"
+                  width="50"
+                  class="shadow-4" />
+              </td>
+              <td>
+                  {{ product.email }}
+              </td>
+
+
+              <td>
+                  <p-button
+                      icon="pi pi-pencil"
+                      class="mr-2"
+                      [rounded]="true"
+                      [outlined]="true"
+                      severity="success"
+                      (onClick)="editProduct(product)" />
+                  <p-button
+                      icon="pi pi-trash"
+                      severity="danger"
+                      [rounded]="true"
+                      [outlined]="true"
+                      (onClick)="deleteProduct(product)" />
+              </td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+              In total there are {{ products ? products.length : 0 }} post.
+          </div>
+      </ng-template>
+  </p-table>
+
+  <p-dialog
+      [(visible)]="productDialog"
+      [style]="{ width: '450px' }"
+      header="Product Details"
+      [modal]="true"
+      styleClass="p-fluid">
+          <ng-template pTemplate="content">
+              <img
+                  [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
+                  [alt]="product.image"
+                  class="block m-auto pb-3"
+                  *ngIf="product.image" />
+              <div class="field">
+                  <label for="name">Name</label>
+                  <input
+                      type="text"
+                      pInputText
+                      id="name"
+                      [(ngModel)]="product.name"
+                      required
+                      autofocus />
+                  <small class="p-error" *ngIf="submitted && !product.name">
+                      Name is required.
+                  </small>
+              </div>
+              <div class="field">
+                  <label for="description">Description</label>
+                  <textarea
+                      id="description"
+                      pInputTextarea
+                      [(ngModel)]="product.description"
+                      required
+                      rows="3"
+                      cols="20">
+                  </textarea>
+              </div>
+
+              <div class="field">
+                  <label for="inventoryStatus">Inventory Status</label>
+                  <p-dropdown
+                      [(ngModel)]="product.inventoryStatus"
+                      inputId="inventoryStatus"
+                      [options]="statuses">
+                          <ng-template pTemplate="selectedItem">
+                              <p-tag
+                                  [value]="product.inventoryStatus.toUpperCase()"
+                                  [severity]="getSeverity(product.inventoryStatus.toUpperCase())" />
+                          </ng-template>
+                          <ng-template let-option pTemplate="item">
+                              <p-tag
+                                  [value]="option.label"
+                                  [severity]="getSeverity(option.label)" />
+                          </ng-template>
+                  </p-dropdown>
+              </div>
+
+              <div class="field">
+                  <label class="mb-3">Category</label>
+                  <div class="formgrid grid">
+                      <div class="field-radiobutton col-6">
+                          <p-radioButton
+                              id="category1"
+                              name="category"
+                              value="Accessories"
+                              [(ngModel)]="product.category" />
+                          <label for="category1">Accessories</label>
+                      </div>
+                      <div class="field-radiobutton col-6">
+                          <p-radioButton
+                              id="category2"
+                              name="category"
+                              value="Clothing"
+                              [(ngModel)]="product.category" />
+                          <label for="category2">Clothing</label>
+                      </div>
+                      <div class="field-radiobutton col-6">
+                          <p-radioButton
+                              id="category3"
+                              name="category"
+                              value="Electronics"
+                              [(ngModel)]="product.category" />
+                          <label for="category3">Electronics</label>
+                      </div>
+                      <div class="field-radiobutton col-6">
+                          <p-radioButton
+                              id="category4"
+                              name="category"
+                              value="Fitness"
+                              [(ngModel)]="product.category" />
+                          <label for="category4">Fitness</label>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="formgrid grid">
+                  <div class="field col">
+                      <label for="price">Price</label>
+                      <p-inputNumber
+                          id="price"
+                          [(ngModel)]="product.price"
+                          mode="currency"
+                          currency="USD"
+                          locale="en-US" />
+                  </div>
+                  <div class="field col">
+                      <label for="quantity">Quantity</label>
+                      <p-inputNumber
+                          id="quantity"
+                          [(ngModel)]="product.quantity" />
+                  </div>
+              </div>
+          </ng-template>
+
+          <ng-template pTemplate="footer">
+              <p-button
+                  label="Cancel"
+                  icon="pi pi-times"
+                  [text]="true"
+                  (onClick)="hideDialog()" />
+              <p-button
+                  label="Save"
+                  icon="pi pi-check"
+                  [text]="true"
+                  (onClick)="saveProduct()" />
+          </ng-template>
+  </p-dialog>
+
+
+  <!-- confirm delete dialog -->
+  <div class="card flex justify-content-center">
+    <p-toast />
+    <p-confirmDialog #cd>
+        <ng-template pTemplate="headless" let-message>
+            <div class="flex flex-col  p-6 rounded-xl bg-white">
+                <div class="flex">
+                  <div class="rounded-full text-white  inline-flex  items-center">
+                    <i class="pi pi-exclamation-trian text-5xl"></i>
+                  </div>
+                  <span class="font-medium text-xl block mb-2 mt-4">
+                      {{ message.header }}
+                  </span>
+                </div>
+                <p class="mb-0 text-center">{{ message.message }}</p>
+                <div class="flex justify-end items-center gap-2 mt-4">
+                    <button
+                        pButton
+                        label="Yes"
+                        (click)="cd.accept()"
+                        class="px-8 py-2 text-sm font-thin border border-red-600 text-white bg-red-600 rounded-md">
+                    </button>
+                    <button
+                        pButton
+                        label="Cancel"
+                        (click)="cd.reject()"
+                        class="px-8 py-2 text-sm font-thin text-primary bg-white border border-primary rounded-md">
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+    </p-confirmDialog>
+    </div>
+
+
+  <!-- create user dialog -->
+  <div class="card flex justify-content-center">
+    <p-dialog header="Create Blog Post" [modal]="true" [(visible)]="isCreateUser" [style]="{ width: '25rem' }">
+        <span class="p-text-secondary block mb-5">Create a new post.</span>
+        <div class="flex items-center gap-3 mb-3">
+            <label for="username" class="font-semibold basis-[30%] w-6rem">Email</label>
+            <input pInputText id="username" class="flex-auto px-4 basis-[70%] py-1 border text-gray-800" autocomplete="off" />
+        </div>
+        <div class="flex items-center gap-3 mb-5">
+            <label for="email" class="font-semibold basis-[30%] w-6rem">First name</label>
+            <input pInputText id="email" class="flex-auto basis-[70%] px-4 py-1 border text-gray" autocomplete="off" />
+        </div>
+        <div class="flex items-center gap-3 mb-5">
+          <label for="email" class="font-semibold basis-[30%] w-6rem">last name</label>
+          <input pInputText id="email" class="flex-auto basis-[70%] px-4 py-1 border" autocomplete="off" />
+      </div>
+        <div class="flex justify-end gap-2 ">
+            <p-button class="px-4 py-2 text-sm font-light bg-gray-100 text-gray-800 rounded-md" label="Cancel" severity="secondary" (onClick)="isCreateUser = false" />
+            <p-button class="px-4 py-2 text-sm font-light bg-primary text-white rounded-md" label="Save" (onClick)="isCreateUser = false" />
+        </div>
+    </p-dialog>
+</div>
+
+</div>

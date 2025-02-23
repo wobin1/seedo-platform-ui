@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-empty',
@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrl: './empty.component.scss'
 })
 export class EmptyComponent {
+@Input() message!:string;
+@Output() btnClick = new EventEmitter();
+
+
+onClick(){
+  this.btnClick.emit();
+}
+
 
 }

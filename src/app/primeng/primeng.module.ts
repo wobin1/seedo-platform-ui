@@ -16,6 +16,23 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { SidebarModule } from 'primeng/sidebar';
 
 
+import { TableModule } from 'primeng/table';
+import { RippleModule } from 'primeng/ripple';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FileUploadModule } from 'primeng/fileupload';
+import { DropdownModule } from 'primeng/dropdown';
+import { TagModule } from 'primeng/tag';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { RatingModule } from 'primeng/rating';
+import { FormsModule } from '@angular/forms';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+
+
 
 
 const primeNG: any = [
@@ -32,7 +49,22 @@ const primeNG: any = [
   AccordionModule,
   DialogModule,
   MultiSelectModule,
-  SidebarModule
+  SidebarModule,
+  TableModule,
+  RippleModule,
+  ToolbarModule,
+  ConfirmDialogModule,
+  InputTextModule,
+  InputTextareaModule,
+  FileUploadModule,
+  DropdownModule,
+  TagModule,
+  RadioButtonModule,
+  RatingModule,
+  FormsModule,
+  InputNumberModule,
+  IconFieldModule,
+  InputIconModule,
 ]
 
 

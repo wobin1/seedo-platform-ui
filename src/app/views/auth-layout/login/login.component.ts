@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../shared/auth.service';
+import { StorageService } from '../../../shared/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,10 @@ export class LoginComponent {
   loading: boolean = false;
   hidePassword: boolean = true;
 
-  constructor(private auth: AuthService, private router:Router, private fb: FormBuilder){}
+  constructor(private auth: AuthService,
+              private router:Router,
+              private fb: FormBuilder,
+              private storage: StorageService){}
 
   ngOnInit(){
     this.loginForm = this.fb.group({
@@ -41,6 +45,7 @@ export class LoginComponent {
       (res) => {
         console.log(res);
         this.loading = false;
+        this.storage.saveJson('user', res)
         this.router.navigate(['/app/dashboard'])
 
       },
