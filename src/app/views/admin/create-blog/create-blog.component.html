@@ -1,0 +1,31 @@
+<div class="">
+  <p-breadcrumb
+      styleClass="bg-transparent w-full"
+      [model]="items"
+      [home]="home" />
+
+
+</div>
+
+<form (ngSubmit)="createPost()" class="card h-screen flex flex-col gap-4 mt-6">
+
+  <div>
+    <input
+    type="text"
+    pInputText
+    id="name"
+    name = "postTitle"
+    [(ngModel)]="postTitle"
+    class="px-4 py-2 w-full max-w-[500px]"
+    required
+    autofocus />
+  </div>
+
+  <div>
+    <p-editor [(ngModel)]="post" name="post" [style]="{ height: '320px' }" />
+  </div>
+
+  <div class="flex justify-end">
+    <p-button label="Submit" [loading] = "loading" class="px-4 py-2 bg-primary text-white rounded-md text-sm" (click)="createPost()" />
+  </div>
+</form>

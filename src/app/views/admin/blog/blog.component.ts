@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 
@@ -34,7 +35,9 @@ export class BlogComponent {
 
       statuses!: any[];
 
-      constructor( private messageService: MessageService, private confirmationService: ConfirmationService) {}
+      constructor( private messageService: MessageService,
+                    private confirmationService: ConfirmationService,
+                    private router:Router) {}
 
       ngOnInit() {
           this.products = [
@@ -75,6 +78,10 @@ export class BlogComponent {
               { label: 'LOWSTOCK', value: 'lowstock' },
               { label: 'OUTOFSTOCK', value: 'outofstock' }
           ];
+      }
+
+      route(page:string){
+        this.router.navigate([page]);
       }
 
       openNew() {

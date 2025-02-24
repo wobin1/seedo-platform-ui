@@ -9,7 +9,7 @@
               icon="pi pi-plus"
               class=" bg-secondary px-4 py-2 rounded-md text-white text-sm"
 
-              (onClick)="showCreateUserDialog()" />
+              (onClick)="route('admin/create-blog')" />
           <p-button
               severity="danger"
               label="Delete"
@@ -20,7 +20,7 @@
           </div>
       </ng-template>
 
-      <ng-template pTemplate="right">
+      <!-- <ng-template pTemplate="right">
           <div class="flex gap-2 items-center">
             <p-fileUpload
               mode="basic"
@@ -36,7 +36,7 @@
               class="bg-purple-600 text-white text-sm px-4 py-2 rounded-md"
               icon="pi pi-upload" />
           </div>
-      </ng-template>
+      </ng-template> -->
   </p-toolbar>
 
   <p-table

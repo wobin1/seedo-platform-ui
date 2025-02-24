@@ -9,6 +9,7 @@ import { BlogComponent } from './blog/blog.component';
 import { MarketComponent } from './market/market.component';
 import { SharedModule } from '../../shared/shared.module';
 import { PrimengModule } from '../../primeng/primeng.module';
+import { CreateBlogComponent } from './create-blog/create-blog.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PrimengModule } from '../../primeng/primeng.module';
     UsersComponent,
     CoursesComponent,
     BlogComponent,
-    MarketComponent
+    MarketComponent,
+    CreateBlogComponent
   ],
   imports: [
     CommonModule,

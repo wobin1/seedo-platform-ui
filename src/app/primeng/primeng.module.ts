@@ -31,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { EditorModule } from 'primeng/editor';
 
 
 
@@ -65,6 +66,7 @@ const primeNG: any = [
   InputNumberModule,
   IconFieldModule,
   InputIconModule,
+  EditorModule
 ]
 
 
