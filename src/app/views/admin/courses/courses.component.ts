@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { CourseService } from '../../../shared/services/course.service';
 
 
 interface Column {
@@ -22,52 +23,35 @@ interface ExportColumn {
 })
 export class CoursesComponent {
   productDialog: boolean = false;
-    isCreateUser:boolean = false;
+  isCreateCourse:boolean = false;
       products!: any[];
-
-      product!: any;
-
+      loading:boolean = false;
+      courses!: any;
+      course:any
+      videoFile:any;
       selectedProducts!: any | null;
 
       submitted: boolean = false;
 
       statuses!: any[];
 
-      constructor( private messageService: MessageService, private confirmationService: ConfirmationService) {}
+      constructor( private messageService: MessageService,
+                    private confirmationService: ConfirmationService,
+                    private courseService: CourseService) {}
 
       ngOnInit() {
-          this.products = [
-            {
-              id: '1000',
-              name: 'Nathaniel Dauda',
-              image: 'assets/images/profile.jpg',
-              email: 'example@email.com',
-            },
-            {
-              id: '1000',
-              name: 'Bamboo Watch',
-              image: '/assets/images/profile.jpg',
-              email: 'example@email.com',
-            },
-            {
-              id: '1000',
-              name: 'Bamboo Watch',
-              image: '/assets/images/profile.jpg',
-              email: 'example@email.com',
-            },
-            {
-              id: '1000',
-              name: 'Bamboo Watch',
-              image: '/assets/images/profile.jpg',
-              email: 'example@email.com',
-            },
-            {
-              id: '1000',
-              name: 'Bamboo Watch',
-              image: '/assets/images/profile.jpg',
-              email: 'example@email.com',
-            },
-          ];
+        this.loading = true;
+          this.courseService.getCourses().subscribe(
+            res =>{
+              this.courses = res;
+              console.log('courses', this.courses);
+              this.loading = false;
+            }, err=>{
+              console.log(err);
+              this.loading = false;
+
+            }
+          )
 
           this.statuses = [
               { label: 'INSTOCK', value: 'instock' },
@@ -77,7 +61,7 @@ export class CoursesComponent {
       }
 
       openNew() {
-          this.product = {};
+          this.courses = {};
           this.submitted = false;
           this.productDialog = true;
       }
@@ -99,11 +83,11 @@ export class CoursesComponent {
 
       showCreateUserDialog() {
         console.log('showing dialog')
-          this.isCreateUser = true;
+          this.isCreateCourse = true;
       }
 
-      editProduct(product: any) {
-          this.product = { ...product };
+      editProduct(course: any) {
+          this.course = { ...course };
           this.productDialog = true;
       }
 
@@ -114,7 +98,7 @@ export class CoursesComponent {
               icon: 'pi pi-exclamation-triangle',
               accept: () => {
                   this.products = this.products.filter((val) => val.id !== product.id);
-                  this.product = {};
+                  this.courses = {};
                   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
               }
           });
@@ -125,30 +109,30 @@ export class CoursesComponent {
           this.submitted = false;
       }
 
-      saveProduct() {
+      saveCourse() {
           this.submitted = true;
 
-          if (this.product.name?.trim()) {
-              if (this.product.id) {
-                  this.products[this.findIndexById(this.product.id)] = this.product;
+          if (this.courses.name?.trim()) {
+              if (this.courses.id) {
+                  this.courses[this.findIndexById(this.courses.id)] = this.courses;
                   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
               } else {
-                  this.product.id = this.createId();
-                  this.product.image = 'product-placeholder.svg';
-                  this.products.push(this.product);
+                  this.courses.id = this.createId();
+                  this.courses.image = 'product-placeholder.svg';
+                  this.courses.push(this.courses);
                   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
               }
 
-              this.products = [...this.products];
+              this.courses = [...this.courses];
               this.productDialog = false;
-              this.product = {};
+              this.courses = {};
           }
       }
 
       findIndexById(id: string): number {
           let index = -1;
-          for (let i = 0; i < this.products.length; i++) {
-              if (this.products[i].id === id) {
+          for (let i = 0; i < this.courses.length; i++) {
+              if (this.courses[i].id === id) {
                   index = i;
                   break;
               }
@@ -178,4 +162,15 @@ export class CoursesComponent {
                   return 'warning';
           }
       }
+
+
+  onImageChange(event:Event){
+    let uploadedFile:any = event.target as HTMLInputElement
+
+    // check if uploadedFile exists
+    if(uploadedFile && uploadedFile.files[0]){
+      this.videoFile = uploadedFile.files[0]
+      console.log('File selected successfully', this.videoFile)
+    }
+  }
 }

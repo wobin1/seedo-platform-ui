@@ -49,10 +49,11 @@
       [(selection)]="selectedProducts"
       [rowHover]="true"
       dataKey="id"
-      styleClass="border"
+      class="bg-red-600"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [showCurrentPageReport]="true"
   >
+
       <ng-template pTemplate="caption">
           <div class="flex justify-between items-center">
               <h5 class="m-0">Manage Users</h5>
@@ -60,7 +61,7 @@
                   <i class="pi pi-search"></i>
                   <p-iconField iconPosition="right">
                     <p-inputIcon styleClass="pi pi-search" />
-                    <input class="px-4 py-2 text-sm" type="text" pInputText placeholder="Search" />
+                    <input class="px-4 py-2 text-sm border" type="text" pInputText placeholder="Search" />
                 </p-iconField>
               </span>
           </div>
@@ -89,7 +90,7 @@
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-product>
-          <tr>
+          <tr class="border">
               <td>
                   <p-tableCheckbox [value]="product" />
               </td>
@@ -100,7 +101,7 @@
               <img
                   [src]="product.image"
                   [alt]="product.name"
-                  width="50"
+                  width="30"
                   class="shadow-4" />
               </td>
               <td>
@@ -132,130 +133,66 @@
       </ng-template>
   </p-table>
 
+  <!-- Edit product dialog -->
   <p-dialog
       [(visible)]="productDialog"
       [style]="{ width: '450px' }"
-      header="Product Details"
+      header="User Details"
       [modal]="true"
       styleClass="p-fluid">
           <ng-template pTemplate="content">
               <img
-                  [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
+                  [src]="product.image"
                   [alt]="product.image"
                   class="block m-auto pb-3"
                   *ngIf="product.image" />
-              <div class="field">
-                  <label for="name">Name</label>
+              <div class="field flex flex-col gap-2">
+                  <label for="name" class="text-sm ">Name</label>
                   <input
                       type="text"
                       pInputText
                       id="name"
                       [(ngModel)]="product.name"
                       required
+                      class="px-4 py-2 text-sm font-normal border"
                       autofocus />
                   <small class="p-error" *ngIf="submitted && !product.name">
                       Name is required.
                   </small>
               </div>
-              <div class="field">
-                  <label for="description">Description</label>
-                  <textarea
-                      id="description"
-                      pInputTextarea
-                      [(ngModel)]="product.description"
-                      required
-                      rows="3"
-                      cols="20">
-                  </textarea>
-              </div>
 
-              <div class="field">
-                  <label for="inventoryStatus">Inventory Status</label>
-                  <p-dropdown
-                      [(ngModel)]="product.inventoryStatus"
-                      inputId="inventoryStatus"
-                      [options]="statuses">
-                          <ng-template pTemplate="selectedItem">
-                              <p-tag
-                                  [value]="product.inventoryStatus.toUpperCase()"
-                                  [severity]="getSeverity(product.inventoryStatus.toUpperCase())" />
-                          </ng-template>
-                          <ng-template let-option pTemplate="item">
-                              <p-tag
-                                  [value]="option.label"
-                                  [severity]="getSeverity(option.label)" />
-                          </ng-template>
-                  </p-dropdown>
-              </div>
+              <div class="field flex flex-col gap-2">
+                <label for="name" class="text-sm ">Email</label>
+                <input
+                    type="text"
+                    pInputText
+                    id="name"
+                    [(ngModel)]="product.name"
+                    required
+                    class="px-4 py-2 text-sm font-normal border"
+                    autofocus />
+                <small class="p-error" *ngIf="submitted && !product.name">
+                    email is required.
+                </small>
+            </div>
 
-              <div class="field">
-                  <label class="mb-3">Category</label>
-                  <div class="formgrid grid">
-                      <div class="field-radiobutton col-6">
-                          <p-radioButton
-                              id="category1"
-                              name="category"
-                              value="Accessories"
-                              [(ngModel)]="product.category" />
-                          <label for="category1">Accessories</label>
-                      </div>
-                      <div class="field-radiobutton col-6">
-                          <p-radioButton
-                              id="category2"
-                              name="category"
-                              value="Clothing"
-                              [(ngModel)]="product.category" />
-                          <label for="category2">Clothing</label>
-                      </div>
-                      <div class="field-radiobutton col-6">
-                          <p-radioButton
-                              id="category3"
-                              name="category"
-                              value="Electronics"
-                              [(ngModel)]="product.category" />
-                          <label for="category3">Electronics</label>
-                      </div>
-                      <div class="field-radiobutton col-6">
-                          <p-radioButton
-                              id="category4"
-                              name="category"
-                              value="Fitness"
-                              [(ngModel)]="product.category" />
-                          <label for="category4">Fitness</label>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="formgrid grid">
-                  <div class="field col">
-                      <label for="price">Price</label>
-                      <p-inputNumber
-                          id="price"
-                          [(ngModel)]="product.price"
-                          mode="currency"
-                          currency="USD"
-                          locale="en-US" />
-                  </div>
-                  <div class="field col">
-                      <label for="quantity">Quantity</label>
-                      <p-inputNumber
-                          id="quantity"
-                          [(ngModel)]="product.quantity" />
-                  </div>
-              </div>
           </ng-template>
 
           <ng-template pTemplate="footer">
-              <p-button
+              <div class="flex justify-end items-center">
+                <p-button
                   label="Cancel"
                   icon="pi pi-times"
+                  styleClass="px-2 py-2 text-primary "
                   [text]="true"
                   (onClick)="hideDialog()" />
-              <p-button
-                  label="Save"
-                  icon="pi pi-check"
-                  [text]="true"
-                  (onClick)="saveProduct()" />
+                <p-button
+                    label="Save"
+                    icon="pi pi-check"
+                    styleClass="px-4 py-2 text-primary "
+                    [text]="true"
+                    (onClick)="saveProduct()" />
+              </div>
           </ng-template>
   </p-dialog>
 

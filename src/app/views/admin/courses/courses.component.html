@@ -41,8 +41,9 @@
 
   <p-table
       #dt
-      [value]="products"
+      [value]="courses"
       [rows]="10"
+      [loading]="loading"
       [paginator]="true"
       [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
       [tableStyle]=""
@@ -71,13 +72,13 @@
                   <p-tableHeaderCheckbox  />
               </th>
               <th  >
-                  Name
+                  Course Title
               </th>
               <th>
-                  Image
+                  Description
               </th>
               <th >
-                  Email
+                  Author
               </th>
               <th >
                 Action
@@ -88,24 +89,20 @@
 
           </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-product>
+      <ng-template pTemplate="body" let-courses>
           <tr>
               <td>
-                  <p-tableCheckbox [value]="product" />
+                  <p-tableCheckbox [value]="courses" />
               </td>
               <td>
-                  {{ product.name }}
+                  {{ courses.title }}
               </td>
               <td>
-              <img
-                  [src]="product.image"
-                  [alt]="product.name"
-                  width="50"
-                  class="shadow-4" />
+                  {{ courses.description }}
               </td>
               <td>
-                  {{ product.email }}
-              </td>
+                Seedo
+            </td>
 
 
               <td>
@@ -115,147 +112,84 @@
                       [rounded]="true"
                       [outlined]="true"
                       severity="success"
-                      (onClick)="editProduct(product)" />
+                      (onClick)="editProduct(courses)" />
                   <p-button
                       icon="pi pi-trash"
                       severity="danger"
                       [rounded]="true"
                       [outlined]="true"
-                      (onClick)="deleteProduct(product)" />
+                      (onClick)="deleteProduct(courses)" />
               </td>
           </tr>
       </ng-template>
       <ng-template pTemplate="summary">
           <div class="flex align-items-center justify-content-between">
-              In total there are {{ products ? products.length : 0 }} courses.
+              In total there are {{ courses ? courses.length : 0 }} courses.
           </div>
       </ng-template>
   </p-table>
 
+
+  <!-- course detail dialog -->
+
+  <!-- Edit course dialog -->
   <p-dialog
       [(visible)]="productDialog"
       [style]="{ width: '450px' }"
-      header="Product Details"
+      header="Course Details"
       [modal]="true"
       styleClass="p-fluid">
           <ng-template pTemplate="content">
-              <img
-                  [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
+              <!-- <img
+                  [src]="product.image"
                   [alt]="product.image"
                   class="block m-auto pb-3"
-                  *ngIf="product.image" />
-              <div class="field">
-                  <label for="name">Name</label>
+                  *ngIf="product.image" /> -->
+              <div class="field flex flex-col gap-2">
+                  <label for="name" class="text-sm ">Course Title</label>
                   <input
                       type="text"
                       pInputText
                       id="name"
-                      [(ngModel)]="product.name"
+                      [(ngModel)]="course.title"
                       required
+                      class="px-4 py-2 text-sm font-normal border"
                       autofocus />
-                  <small class="p-error" *ngIf="submitted && !product.name">
+                  <small class="p-error" *ngIf="submitted && !course.name">
                       Name is required.
                   </small>
               </div>
-              <div class="field">
-                  <label for="description">Description</label>
-                  <textarea
-                      id="description"
-                      pInputTextarea
-                      [(ngModel)]="product.description"
-                      required
-                      rows="3"
-                      cols="20">
-                  </textarea>
-              </div>
 
-              <div class="field">
-                  <label for="inventoryStatus">Inventory Status</label>
-                  <p-dropdown
-                      [(ngModel)]="product.inventoryStatus"
-                      inputId="inventoryStatus"
-                      [options]="statuses">
-                          <ng-template pTemplate="selectedItem">
-                              <p-tag
-                                  [value]="product.inventoryStatus.toUpperCase()"
-                                  [severity]="getSeverity(product.inventoryStatus.toUpperCase())" />
-                          </ng-template>
-                          <ng-template let-option pTemplate="item">
-                              <p-tag
-                                  [value]="option.label"
-                                  [severity]="getSeverity(option.label)" />
-                          </ng-template>
-                  </p-dropdown>
-              </div>
+              <div class="field "  class="field flex flex-col gap-2 mt-4">
+                <label for="description">Course Description</label>
+                <textarea
+                    id="description"
+                    pInputTextarea
+                    [(ngModel)]="course.description"
+                    required
+                    class="border px-4 py-2"
+                    rows="3"
+                    cols="20">
+                </textarea>
+            </div>
 
-              <div class="field">
-                  <label class="mb-3">Category</label>
-                  <div class="formgrid grid">
-                      <div class="field-radiobutton col-6">
-                          <p-radioButton
-                              id="category1"
-                              name="category"
-                              value="Accessories"
-                              [(ngModel)]="product.category" />
-                          <label for="category1">Accessories</label>
-                      </div>
-                      <div class="field-radiobutton col-6">
-                          <p-radioButton
-                              id="category2"
-                              name="category"
-                              value="Clothing"
-                              [(ngModel)]="product.category" />
-                          <label for="category2">Clothing</label>
-                      </div>
-                      <div class="field-radiobutton col-6">
-                          <p-radioButton
-                              id="category3"
-                              name="category"
-                              value="Electronics"
-                              [(ngModel)]="product.category" />
-                          <label for="category3">Electronics</label>
-                      </div>
-                      <div class="field-radiobutton col-6">
-                          <p-radioButton
-                              id="category4"
-                              name="category"
-                              value="Fitness"
-                              [(ngModel)]="product.category" />
-                          <label for="category4">Fitness</label>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="formgrid grid">
-                  <div class="field col">
-                      <label for="price">Price</label>
-                      <p-inputNumber
-                          id="price"
-                          [(ngModel)]="product.price"
-                          mode="currency"
-                          currency="USD"
-                          locale="en-US" />
-                  </div>
-                  <div class="field col">
-                      <label for="quantity">Quantity</label>
-                      <p-inputNumber
-                          id="quantity"
-                          [(ngModel)]="product.quantity" />
-                  </div>
-              </div>
           </ng-template>
 
           <ng-template pTemplate="footer">
-              <p-button
+              <div class="flex justify-end items-center">
+                <p-button
                   label="Cancel"
                   icon="pi pi-times"
+                  styleClass="px-2 py-2 text-primary "
                   [text]="true"
                   (onClick)="hideDialog()" />
-              <p-button
-                  label="Save"
-                  icon="pi pi-check"
-                  [text]="true"
-                  (onClick)="saveProduct()" />
+                <p-button
+                    label="Save"
+                    icon="pi pi-check"
+                    styleClass="px-4 py-2 text-primary "
+                    [text]="true"
+                    (onClick)="saveCourse()" />
+              </div>
           </ng-template>
   </p-dialog>
 
@@ -295,27 +229,81 @@
     </div>
 
 
-  <!-- create user dialog -->
+  <!-- create course dialog -->
   <div class="card flex justify-content-center">
-    <p-dialog header="Create Course" [modal]="true" [(visible)]="isCreateUser" [style]="{ width: '25rem' }">
-        <span class="p-text-secondary block mb-5">Create a new course.</span>
-        <div class="flex items-center gap-3 mb-3">
-            <label for="username" class="font-semibold basis-[30%] w-6rem">Email</label>
-            <input pInputText id="username" class="flex-auto px-4 basis-[70%] py-1 border text-gray-800" autocomplete="off" />
-        </div>
-        <div class="flex items-center gap-3 mb-5">
-            <label for="email" class="font-semibold basis-[30%] w-6rem">First name</label>
-            <input pInputText id="email" class="flex-auto basis-[70%] px-4 py-1 border text-gray" autocomplete="off" />
-        </div>
-        <div class="flex items-center gap-3 mb-5">
-          <label for="email" class="font-semibold basis-[30%] w-6rem">last name</label>
-          <input pInputText id="email" class="flex-auto basis-[70%] px-4 py-1 border" autocomplete="off" />
-      </div>
-        <div class="flex justify-end gap-2 ">
-            <p-button class="px-4 py-2 text-sm font-light bg-gray-100 text-gray-800 rounded-md" label="Cancel" severity="secondary" (onClick)="isCreateUser = false" />
-            <p-button class="px-4 py-2 text-sm font-light bg-primary text-white rounded-md" label="Save" (onClick)="isCreateUser = false" />
-        </div>
+    <p-dialog
+        header="Header"
+        [(visible)]="isCreateCourse"
+        [modal]="true"
+        [style]="{ width: '25rem' }">
+            <ng-template pTemplate="header">
+                <div class="inline-flex align-items-center justify-content-center gap-2">
+                    <h4>Add new Lesson</h4>
+                </div>
+            </ng-template>
+            <!-- Comment Form -->
+            <div class="w-full  mx-auto">
+              <div class="mx-auto max-w-2xl">
+
+                <!-- Card -->
+                <form>
+                  <div class="mb-2">
+                    <label for="hs-feedback-post-comment-name-1" class="block mb-2 text-sm font-medium">Title</label>
+                    <input type="text" id="hs-feedback-post-comment-name-1" class=" border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Course title">
+                  </div>
+
+                  <div>
+                    <label for="hs-feedback-post-comment-textarea-1" class="block mb-2 text-sm font-medium">Lesson description</label>
+                    <div class="mt-1">
+                      <textarea id="hs-feedback-post-comment-textarea-1" name="hs-feedback-post-comment-textarea-1" rows="3" class=" border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Enter Lesson description"></textarea>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="fileUpload">
+
+                      <div  class="mt-4 flex justify-between">
+                        <p>{{videoFile?.name}}</p>
+                        <div type="" class="flex gap-2 items-center text-sm text-primary">
+                          Upload video
+                          <span class="text-primary ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383"/>
+                              <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </label>
+                    <input (change)="onImageChange($event)" id="fileUpload" type="file" class="hidden">
+                  </div>
+
+
+                </form>
+
+                <!-- End Card -->
+              </div>
+            </div>
+            <!-- End Comment Form -->
+            <ng-template pTemplate="footer">
+               <div class="flex gap-2 w-full justify-end">
+                  <!-- <p-button
+                  label="Cancel"
+                  [text]="true"
+                  severity="secondary"
+                  styleClass="border bg-red-600 text-sm font-medium text-white px-4 py-2"
+                  (onClick)="addLesson = false" /> -->
+                  <p-button
+                      label="Save"
+                      [loading]="loading"
+                      [outlined]="true"
+                      styleClass="border bg-primary text-sm font-medium text-white px-4 py-2"
+                      severity="secondary"
+                      (onClick)="saveCourse()"/>
+               </div>
+            </ng-template>
     </p-dialog>
-</div>
+  </div>
+
 
 </div>
