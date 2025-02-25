@@ -30,7 +30,7 @@ export class CreateBlogComponent {
 
   createPost(){
     this.loading = true;
-    this.api.post('blog', {"title": this.postTitle, "content": this.post}).subscribe(
+    this.api.post('blog/', {"title": this.postTitle, "content": this.post}).subscribe(
       res=>{
         console.log(res);
         this.loading = false;
