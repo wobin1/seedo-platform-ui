@@ -23,7 +23,6 @@ export class HttpServiceService {
 
   get(endpoint:string){
     this.token = this.storage.getJson('user').access_token;  // Get JWT token from local storage
-    console.log('sent token', this.token)
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`,  // Add Bearer token
       'Content-Type': 'application/json'   // Specify content type
